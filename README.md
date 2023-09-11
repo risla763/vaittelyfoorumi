@@ -2,7 +2,7 @@ Sovellus on keskustelufoorumi, jonka tarkoitus on että siellä voi väitellä e
 Sovellukseen voi kirjautua sisään ja ulos, kun on tehnyt oman käyttäjän.
 Kirjautuneen käyttäjän avatessa sovelluksen siinä näkyy käyttäjän oma profiili, ehdotetut keskustelut ja aloita keskustelu osiot.
 
-Profiili:
+# Profiili:
 
 -Käytäjä voi näyttää siinä väittelyt, jotka hän haluaa 
 
@@ -14,7 +14,7 @@ Profiili:
 
 
 
-Väittelyketjun aloittaminen:
+# Väittelyketjun aloittaminen:
 
 -Käyttäjä voi aloittaa väittelyketjun antamalla ketjulle otsikon ja aloitusviestin sisällön.
 
@@ -22,7 +22,7 @@ Väittelyketjun aloittaminen:
 
 
 
-Väittelyketjuun liittyminen:
+# Väittelyketjuun liittyminen:
 
 -Sovelluksessa on osio, jossa käyttäjä voi kirjoittaa hakukoneeseen sanoja ja sieltä löytyy väittelyitä,
 
@@ -34,6 +34,6 @@ joiden otsikot sisältävät näitä sanoja.
 
 
 
-Lisää ominaisuuksia:
+# Lisää ominaisuuksia:
 
 -Käyttäjien profiileissa/etusivulla julkaistuja väittelyitä saa äänestää, että kumpi puoli väittelyssä on voittanut.
