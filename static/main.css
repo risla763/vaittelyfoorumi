@@ -1,0 +1,11 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgb(42, 35, 84);
+    color: rgb(192, 203, 205);
+}
+
+form {
+    margin-top: 100px;
+}
