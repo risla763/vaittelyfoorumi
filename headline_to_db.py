@@ -3,10 +3,11 @@ from sqlalchemy import text
 
 # Function to insert a headline and return its ID
 def insert_headline(headline):
-    sql = text("INSERT INTO headlines (headline) VALUES (:headline) RETURNING headline_id")
+    print((f"tämä on HEADLINE:{headline}"))
+    sql = text("INSERT INTO headlines (headline_text) VALUES (:headline) RETURNING headline_id")
     
     try:
-        result = db.session.execute(sql, {"headline_text": headline})
+        result = db.session.execute(sql, {"headline": headline})
         db.session.commit()
         return result.scalar()
     except Exception as e:

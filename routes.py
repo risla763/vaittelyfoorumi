@@ -2,6 +2,7 @@ from app import app
 from flask import render_template, request, redirect
 import users
 import messages
+import headlines_to_list 
 
 
 @app.route("/")
@@ -35,14 +36,27 @@ def register():
 def new_conversation():
     return render_template("new_conversation.html")
 
-@app.route("/send", methods=["POST"])
+@app.route("/send", methods=["POST"]) #Tämä route tärkeä
 def send():
     print("Meni send")
     #username pitää yhdistää sen user_id koska se on eri asia...ehkä messages filessä..
     username = request.form["username"]
-    headline = request.form["headline"]
+    headline_text = request.form["headline"]
     content = request.form["content"]
-    if messages.send(username,content,headline):
-        return render_template("new_debate.html",username=username,headline=headline,content=[content])
+    print(f"tämä on otsikko:{headline_text}")
+    print(request.form)
+    if messages.send(username,content,headline_text):
+        return render_template("new_debate.html",username=username,headline=headline_text,content=[content])
     else:
         return render_template("error.html", message="Viestin lähetys ei onnistunut")
+    
+@app.route("/main_page", methods=["GET","POST"])
+def main_page():
+    print("Etusivullee")
+    return render_template("main_page.html")
+
+@app.route("/headlines_list", methods=["GET","POST"])
+def headlines_to_list_route():
+    headlines = headlines_to_list.headlines_list()
+    if headlines_to_list.headlines_list():
+        return render_template("main_page.html",headlines=headlines)

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>This is the site that opens up when you are on the main page and here goes the links to the old debates</title>
+
+</head>
+<body>
+    <title>Tähän loop silmukka, jossa haetaan kaikki headlines db tiedostot ja kun
+        niistä kikataan niin se johtaa "/old_conversation"</title>
+        <h1>All the debates</h1>
+        <ul>
+            {% for hl in headlines %}
+                <li>{{ hl }}</li>
+            {% endfor %}
+        </ul>
+    <href="/old_conversation></href>"
+</body>
+</html>
