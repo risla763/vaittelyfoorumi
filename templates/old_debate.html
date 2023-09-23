@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>This is the site that opens up when you are on the main page and here goes the links to the old debates</title>
-
+    <title>Chat Page</title>
 </head>
 <body>
+    <h1>{{ headline }}</h1>
     <title>Tähän loop silmukka, jossa haetaan kaikki headlines db tiedostot ja kun
         niistä klikataan niin se johtaa "/old_conversation"</title>
-        <h1>All the debates</h1>
+        <ul>  
+        {% for u, m in messages_and_users.items() %}
+        <li>User ID: {{ u }}</li>
+            {% for m in messages_and_users.items() %}
+                <li>Viesti: {{ m }}</li>
+            {% endfor %}
         <ul>
-            {% for hl in headlines %}
-                <li> <a href = "/old?h1={{ hl }}">{{ hl }}</a></li>
             {% endfor %}
         </ul>
     <href="/old_conversation></href>"
