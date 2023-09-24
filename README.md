@@ -70,3 +70,5 @@ Laita user kohdalle oma käyttäjä.
 # Huomion arvoista
 
 - Kun on aloittamassa uutta väittelyä niin pitää kirjoittaa username kohtaan oikea username tietokannasta tai muuten tulee error.
+
+- Myös kun teet uuden väittelyn ja valitset sille otsikon niin otsikon täytyy olla uniikki. Eli ei kahta samannimistä otsikkoa.
