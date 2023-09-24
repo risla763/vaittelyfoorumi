@@ -8,7 +8,8 @@ from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__)
 app.secret_key = getenv("SECRET_KEY")
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///' + environ.get("DATABASE_URL", "maija")
+app.config['SQLALCHEMY_DATABASE_URI'] = environ.get("DATABASE_URL", "postgresql:///maija")
+
 db.init_app(app)
 
 import routes
