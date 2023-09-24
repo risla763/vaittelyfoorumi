@@ -16,13 +16,26 @@ def matching_content(h1):
         print(f"TÄSSÄ LISTA: {messages_list}")
     else:
         print("Error")
-
+        messages_list = []
+    
     user_message_dict = {}  
     for message, user_id in messages_list:
         if user_id not in user_message_dict:
             user_message_dict[user_id] = []
         user_message_dict[user_id].append(message)
 
-    return user_message_dict 
-
+    new_dict_for_usernames = {}
+    newest_dict={}
+    for user_id in user_message_dict.keys():
+        sql = text("SELECT username FROM users WHERE id = :user_id")
+        result = db.session.execute(sql, {"user_id": user_id})
+        result2 = result.fetchone()
+        if result2:
+            usern = result2[0] #???
+            new_dict_for_usernames[user_id] = usern
+            newest_dict[usern] = user_message_dict[user_id]
+    #Tämän jälkeen vielä lista joka yhdistää user_id tosta user_message_dict ja sit users listan käyttäjä nimen
+    #ja tee niistä uuusi sanakirja
+    print(f"Tässä tää lista, jossa kaikki: {newest_dict}") 
+    return newest_dict
 

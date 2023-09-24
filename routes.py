@@ -65,10 +65,12 @@ def headlines_to_list_route():
 @app.route("/old", methods=["GET","POST"])
 def fetch_old():
     headline = request.args.get("h1") #tässä pitää periä main_page h1, se josta painetaan linkissä
-    print(f"Tässä päästiin match juttuun ja tää on h1: {headline}")
     messages_users_dict = match_headline.matching_content(headline)
     if match_headline.matching_content(headline):
-          return render_template("old_debate.html",headline=headline,messages_and_users=messages_users_dict)
+        return render_template("old_debate.html",headline=headline,messages_and_users=messages_users_dict)
+
+    else:
+        return render_template("error.html", message="Viestin lähetys ei onnistunut")
  
 
         #return render_template("old_debate.html",username=username,content=conten,headline=headline)
