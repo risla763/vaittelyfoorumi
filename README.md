@@ -37,3 +37,31 @@ joiden otsikot sisältävät näitä sanoja.
 # Lisää ominaisuuksia:
 
 -Käyttäjien profiileissa/etusivulla julkaistuja väittelyitä saa äänestää, että kumpi puoli väittelyssä on voittanut.
+
+# käyttöönotto:
+
+Kirjoita seuraavat komennot terminaaliin:
+
+python3 -m venv venv
+
+source venv/bin/activate
+
+Asenna riippuvuudet näillä komennoilla:
+
+pip install -r ./requirements.
+
+psql < schema.sql
+
+Käynnistä projekti:
+
+
+flask run
+
+Luo ennen käynnistystä kuitenkin .env tiedosto kansioon, jonne sijoita nämä:
+
+SECRET_KEY = tähän asenna secret key
+DEBUG = True
+
+
+Myös ennen ohjelman ajamista muokkaa app.py tiedostoa ja kohtaan jossa lukee: app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///maija' 
+vaihda = merkin jälkeen polku omaan tunnukseesi näin: 'postgresql:///user'

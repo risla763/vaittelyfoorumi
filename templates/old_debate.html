@@ -9,7 +9,7 @@
         niistä klikataan niin se johtaa "/old_conversation"</title>
         <ul>  
         {% for u, m in messages_and_users.items() %}
-        <li>User: {{ u }}</li>
+        User: {{ u }}
             {% for m in messages_and_users.items() %}
                 <li>Viesti: {{ m[1] | replace('\r\n', '') }}</li>
             {% endfor %}
