@@ -63,4 +63,10 @@ SECRET_KEY = tähän asenna secret key
 DEBUG = True
 DATABASE_URL = postgresql:///user 
 
+
 Laita user kohdalle oma käyttäjä.
+
+
+# Huomion arvoista
+
+- Kun on aloittamassa uutta väittelyä niin pitää kirjoittaa username kohtaan oikea username tietokannasta tai muuten tulee error.

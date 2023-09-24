@@ -15,7 +15,7 @@ CREATE TABLE messages1 (
     message_text TEXT NOT NULL,
     user_id INT NOT NULL,
     headline_id INT,
-    timestamp TIMESTAMPTZ NOT NULL,
+    timestamp TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     FOREIGN KEY (user_id) REFERENCES users(id),
     FOREIGN KEY (headline_id) REFERENCES headlines(headline_id)
 );
