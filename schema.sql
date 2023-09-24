@@ -14,7 +14,7 @@ CREATE TABLE messages1 (
     FOREIGN KEY (headline_id) REFERENCES headlines(headline_id)
 );
 
-CREATE INDEX idx_timestamp ON messages (timestamp);
+CREATE INDEX idx_timestamp ON messages1 (timestamp);
 
 CREATE TABLE headlines (
     headline_id SERIAL PRIMARY KEY,
