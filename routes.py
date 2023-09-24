@@ -61,6 +61,8 @@ def headlines_to_list_route():
     headlines = headlines_to_list.headlines_list()
     if headlines_to_list.headlines_list():
         return render_template("main_page.html",headlines=headlines)
+    else:
+        return render_template("error.html", message="Ei vielä väittelyitä")
     
 @app.route("/old", methods=["GET","POST"])
 def fetch_old():

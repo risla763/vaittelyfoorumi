@@ -1,7 +1,6 @@
 from database import db
 from sqlalchemy import text
 
-# Function to insert a headline and return its ID
 def insert_headline(headline):
     print((f"tämä on HEADLINE:{headline}"))
     sql = text("INSERT INTO headlines (headline_text) VALUES (:headline) RETURNING headline_id")

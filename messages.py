@@ -6,13 +6,10 @@ from sqlalchemy import text
 def send(username, message_text, headline):
     user_id = get_user_id_by_username(username)
     headline_id = insert_headline(headline)
-    print(f"Tämä on user_id: {user_id}") #kovakoodausta
-    print(f"Tämä on message_text: {message_text}")
-    print(f"Tämä on headline: {headline_id}")
     if user_id is None:
-        return False  # Return False if the username is not found
+        return False  
 
-    # Define the SQL statement as text
+
     sql = text("INSERT INTO messages1 (message_text, user_id, headline_id) "
                 "VALUES (:message_text, :user_id, :headline_id)")
 
