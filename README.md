@@ -48,7 +48,7 @@ source venv/bin/activate
 
 Asenna riippuvuudet näillä komennoilla:
 
-pip install -r ./requirements.
+pip install -r requirements.txt
 
 psql < schema.sql
 
@@ -61,7 +61,6 @@ Luo ennen käynnistystä kuitenkin .env tiedosto kansioon, jonne sijoita nämä:
 
 SECRET_KEY = tähän asenna secret key
 DEBUG = True
+DATABASE_URL = postgresql:///user 
 
-
-Myös ennen ohjelman ajamista muokkaa app.py tiedostoa ja kohtaan jossa lukee: app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///maija' 
-vaihda = merkin jälkeen polku omaan tunnukseesi näin: 'postgresql:///user'
+Laita user kohdalle oma käyttäjä.
