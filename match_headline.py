@@ -25,9 +25,9 @@ def matching_content(h1):
     for user_id in user_message_dict.keys():
         sql = text("SELECT username FROM users WHERE id = :user_id")
         result = db.session.execute(sql, {"user_id": user_id})
-        result2 = result.fetchone()
+        result2 = result.scalar()
         if result2:
-            usern = result2[0] #???
+            usern = result2
             new_dict_for_usernames[user_id] = usern
             newest_dict[usern] = user_message_dict[user_id]
     #Tämän jälkeen vielä lista joka yhdistää user_id tosta user_message_dict ja sit users listan käyttäjä nimen
