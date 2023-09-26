@@ -27,7 +27,6 @@ def logout():
 
 @app.route("/register", methods=["POST"])
 def register():
-    print("nyt register")
     username = request.form["username"]
     password = request.form["password"]
     if users.register(username,password):
@@ -39,13 +38,10 @@ def new_conversation():
 
 @app.route("/send", methods=["POST"]) #Tämä route tärkeä
 def send():
-    print("Meni send")
-    #username pitää yhdistää sen user_id koska se on eri asia...ehkä messages filessä..
+     #username pitää yhdistää sen user_id koska se on eri asia...ehkä messages filessä..
     username = request.form["username"]
     headline_text = request.form["headline"]
     content = request.form["content"]
-    print(f"tämä on otsikko:{headline_text}")
-    print(request.form)
     if messages.send(username,content,headline_text):
         return render_template("new_debate.html",username=username,headline=headline_text,content=[content])
     else:
@@ -53,8 +49,7 @@ def send():
     
 @app.route("/main_page", methods=["GET","POST"])
 def main_page():
-    print("Etusivullee")
-    return render_template("main_page.html")
+     return render_template("main_page.html")
 
 @app.route("/headlines_list", methods=["GET","POST"])
 def headlines_to_list_route():

@@ -6,5 +6,4 @@ def headlines_list():
     data = db.session.execute(sql)
 
     headlines = [row[0] for row in data.fetchall()] #tekee listan
-    print(headlines)
     return headlines

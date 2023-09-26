@@ -2,7 +2,6 @@ from database import db
 from sqlalchemy import text
 
 def insert_headline(headline):
-    print((f"tämä on HEADLINE:{headline}"))
     sql = text("INSERT INTO headlines (headline_text) VALUES (:headline) RETURNING headline_id")
     
     try:
@@ -11,5 +10,4 @@ def insert_headline(headline):
         return result.scalar()
     except Exception as e:
         db.session.rollback()
-        print(f"Error inserting headline: {e}")
         return None

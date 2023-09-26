@@ -19,6 +19,5 @@ def send(username, message_text, headline):
         return True
     except Exception as e:
         db.session.rollback()
-        print(f"Error sending message: {e}")
         return False
 
