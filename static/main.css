@@ -2,10 +2,56 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: rgb(42, 35, 84);
-    color: rgb(192, 203, 205);
+    background: rgb(15, 5, 70);
+    color: rgb(177,161,253);
 }
 
 form {
     margin-top: 100px;
+}
+
+form #login_button {
+    padding: 15px 30px;
+    background: rgb(177,161,253);
+    color: rgb(0, 0, 0);
+    border: none;
+    box-shadow: 0 0 10px rgba(177,161,253, 0.7);
+}
+
+form #login_button:hover {
+    padding: 15px 30px;
+    background: rgb(158, 216, 218);
+    color: rgb(0, 0, 0);
+    border: none;
+    box-shadow: 0 0 10px rgba(177,161,253, 0.7);
+}
+
+form #real_login_bt {
+    padding: 15px 30px;
+    background: rgb(177,161,253);
+    color: rgb(0, 0, 0);
+    border: none;
+    box-shadow: 0 0 10px rgba(177,161,253, 0.7);
+
+}
+form #real_login_bt:hover {
+    padding: 15px 30px;
+    background: rgb(158, 216, 218);
+    color: rgb(0, 0, 0);
+    border: none;
+    box-shadow: 0 0 10px rgba(177,161,253, 0.7);
+}
+
+
+.round-3 {
+  border-radius: 50%;
+}
+
+.buttons {
+    margin-top: 100px;
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+
+
 }

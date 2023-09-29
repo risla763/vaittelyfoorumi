@@ -16,8 +16,8 @@ def login(username, password):
         else:
             return False
 
-def logout():
-    del session["user_id"]
+#def logout():
+    #del session["user_id"]
 
 def register(username, password):
     username = request.form["username"]

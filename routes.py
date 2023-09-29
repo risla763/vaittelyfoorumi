@@ -1,5 +1,5 @@
 from app import app
-from flask import render_template, request, redirect
+from flask import render_template, request, redirect, session
 import users
 import messages
 import headlines_to_list 
@@ -10,20 +10,29 @@ import match_headline
 def index():
     return render_template("index.html")
 
-@app.route("/login",methods=["POST"])
+@app.route("/login",methods=["POST"]) #ÄLÄ MUUTA 
 def login():
     username = request.form["username"]
     password = request.form["password"]
     # TODO: check username and password
     if users.login(username,password): #tallentaa tietokantaan
+        session["username"] = username
         return render_template("new_user_hp.html", username=username)
     else:
         return render_template("error.html", message="Väärä tunnus tai salasana")
+    
+@app.route("/login_page", methods= ["GET","POST"])
+def login_page():
+    return render_template("login_own_page.html")
 
-@app.route("/logout")
-def logout():
-    users.logout()
-    return redirect("/")
+@app.route("/register_page", methods= ["GET", "POST"])
+def register_page():
+    return render_template("register_own_page.html")
+
+#@app.route("/logout")
+#def logout():
+    #users.logout()
+    #return redirect("/")
 
 @app.route("/register", methods=["POST"])
 def register():
@@ -39,13 +48,27 @@ def new_conversation():
 @app.route("/send", methods=["POST"]) #Tämä route tärkeä
 def send():
      #username pitää yhdistää sen user_id koska se on eri asia...ehkä messages filessä..
-    username = request.form["username"]
-    headline_text = request.form["headline"]
+    username = session.get("username")
+    #username = request.form["username"]
     content = request.form["content"]
+    headline_text = request.form["headline"]
     if messages.send(username,content,headline_text):
         return render_template("new_debate.html",username=username,headline=headline_text,content=[content])
     else:
         return render_template("error.html", message="Viestin lähetys ei onnistunut")
+    
+@app.route("/comment", methods=["POST"])
+def comment():
+    username = session.get("username")
+    content = request.form["content"]
+    headline = request.form["headline"]
+    messages_list = match_headline.matching_comment(headline,username,content)
+    if messages_list:
+        return render_template("old_debate.html",headline=headline,messages_list=messages_list)
+
+    else:
+        return render_template("error.html", message="Viestin lähetys ei onnistunut")
+
     
 @app.route("/main_page", methods=["GET","POST"])
 def main_page():
@@ -61,13 +84,14 @@ def headlines_to_list_route():
     
 @app.route("/old", methods=["GET","POST"])
 def fetch_old():
+    print("moro moro")  
     headline = request.args.get("h1") #tässä pitää periä main_page h1, se josta painetaan linkissä
-    messages_users_dict = match_headline.matching_content(headline)
-    if match_headline.matching_content(headline):
-        return render_template("old_debate.html",headline=headline,messages_and_users=messages_users_dict)
-
+    messages_list = match_headline.matching_content(headline)
+    if messages_list:
+        return render_template("old_debate.html",headline=headline,messages_list=messages_list)
     else:
         return render_template("error.html", message="Viestin lähetys ei onnistunut")
- 
+    
+#@app.route("/logout", method = ["POST"])
+#def logout():
 
-        #return render_template("old_debate.html",username=username,content=conten,headline=headline)

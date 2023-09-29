@@ -8,14 +8,24 @@
     <title>Tähän loop silmukka, jossa haetaan kaikki headlines db tiedostot ja kun
         niistä klikataan niin se johtaa "/old_conversation"</title>
         <ul>  
-        {% for u, m in messages_and_users.items() %}
-        User: {{ u }}
-            {% for m in messages_and_users.items() %}
-            <li>Viesti: {{ m[1][0]|replace("\r\n", "<br/>"|safe ) }}</li>
+        {% for tuple in messages_list %}
+        User: {{ tuple.1 }}
+            <li>Viesti: {{ tuple.0|replace("\r\n", "<br/>")|safe }}</li>
             {% endfor %}
         <ul>
-        {% endfor %}
-        </ul>
-    <href="/old_conversation></href>"
+
+    </ul>
+    <form action="/comment" method="POST">
+        <input type="hidden" name="headline" value="{{ headline }}">
+        <br>
+        Write here your comment: <br>
+        <br>
+        <textarea name="content" rows="5" cols="40"> </textarea> <br>
+        <br>
+        <input type="submit" value="Post comment">
+    </form> 
+
+    <a href="/headlines_list">Main page</a> <title>Tämä on linkki Main page</title>
+
 </body>
 </html>

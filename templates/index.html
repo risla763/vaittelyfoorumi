@@ -1,22 +1,10 @@
 <!DOCTYPE html>
 <link rel="stylesheet" href="static/main.css">
-{% if session.username %}
-<p>Olet kirjautunut nimellä {{ session.username }}</p>
-<a href="/logout">Log out</a>
-{% else %}
-<form action="/login" method="POST">
-    <p>Username:<br>
-    <input type="text" name="username"></p>
-    <p>Password:<br>
-    <input type="password" name="password"></p>
-    <input type="submit" value="Log in">
-</form>
-<form action="/register" method="POST">
-    <p>Username:<br>
-    <input type="text" name="username"></p>
-    <p>Password:<br>
-    <input type="password" name="password"></p>
-    <input type="submit" value="Register">
-</form>
-
-{% endif %}
+<div class="buttons">
+    <form action="/login_page" method="POST">
+        <input class="round-3" id ="real_login_bt" type="submit" value="Log in">
+    </form>
+    <form action="/register_page" method="POST">
+        <input class= "round-3" id ="login_button" type="submit" value="Register">
+    </form>
+</div>
