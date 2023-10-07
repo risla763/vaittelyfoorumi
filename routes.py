@@ -35,6 +35,8 @@ def register():
     password = request.form["password"]
     if users.register(username,password):
         return redirect("/")
+    else:
+        return render_template("error.html", message=(f"This username already exists: {username}"))
     
 @app.route("/new_conversation", methods=["GET","POST"])
 def new_conversation():

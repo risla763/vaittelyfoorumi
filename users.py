@@ -23,6 +23,13 @@ def register(username, password):
     username = request.form["username"]
     password = request.form["password"]
     hash_value = generate_password_hash(password)
+    sql = text("SELECT username FROM users")
+    result = db.session.execute(sql)
+    usernames = result.fetchall()
+    usernames_list = [name[0].strip("'") for name in usernames]
+    for i in usernames_list:
+        if i == username:
+            return False
     try:
         sql = text("INSERT INTO users (username,password) VALUES (:username,:password)")
         db.session.execute(sql, {"username":username, "password":hash_value})
