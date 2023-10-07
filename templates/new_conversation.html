@@ -6,8 +6,8 @@
 <body>
     <p>
         <form action="/send" method="POST">
-        Username: <br>
-        <input type="text" name="username" value="YourUsername" size="20">
+        Username: {{ username }} <br>
+        <input type="hidden" name="username" value="{{ username }}" size="20">
         <br>
         Title of the debate: <br>
         <input type="text" name="headline" value="Title" size="20">

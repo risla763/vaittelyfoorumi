@@ -40,7 +40,8 @@ def register():
     
 @app.route("/new_conversation", methods=["GET","POST"])
 def new_conversation():
-    return render_template("new_conversation.html")
+    username = session.get("username")
+    return render_template("new_conversation.html", username = username)
 
 @app.route("/send", methods=["POST"]) #Tämä route tärkeä
 def send():
