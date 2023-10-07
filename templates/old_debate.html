@@ -1,31 +1,47 @@
 <!DOCTYPE html>
+<link rel="stylesheet" href="static/message_chain.css">
+<link rel="stylesheet" href="static/main_page.css"/>
 <html>
+
 <head>
     <title>Chat Page</title>
 </head>
 <body>
+    <div class="navbar">
+
+        <form action="/headlines_list" method="POST">
+            <input id="headlines" type="submit" value="Main page">
+        </form>
+        <form action="/new_conversation" method="POST">
+            <input id="new_convo" type="submit" value="Start a debate">
+        </form>
+        <form action="/logout" method="GET">
+            <input id="logout" type="submit" value="Log out">
+        </form>
+    </div>
+    <div class="headline">
     <h1>{{ headline }}</h1>
+    </div>
     <title>Tähän loop silmukka, jossa haetaan kaikki headlines db tiedostot ja kun
         niistä klikataan niin se johtaa "/old_conversation"</title>
         <ul>  
         {% for tuple in messages_list %}
-        User: {{ tuple.1 }}
-            <li>Viesti: {{ tuple.0|replace("\r\n", "<br/>")|safe }}</li>
-            {% endfor %}
-        <ul>
-
-    </ul>
-    <form action="/comment" method="POST">
-        <input type="hidden" name="headline" value="{{ headline }}">
-        <br>
-        Write here your comment: <br>
-        <br>
-        <textarea name="content" rows="5" cols="40"> </textarea> <br>
-        <br>
-        <input type="submit" value="Post comment">
-    </form> 
-
-    <a href="/headlines_list">Main page</a> <title>Tämä on linkki Main page</title>
-
+            <div class="comments_on_the_bottom">
+                <div class="comment">
+                    <div class="user">Username: {{ tuple.1 }}</div>
+                    <div class="message">{{ tuple.0|replace("\r\n", "<br/>")|safe }}</div>
+                </div>
+            </div>
+        {% endfor %}
+        </ul>
+    <div class="input"> 
+        <form action="/comment" method="POST">
+            <input type="hidden" name="headline" value="{{ headline }}">
+            <label for="comment-box">Write here:</label>
+            <textarea id="comment-box" name="content" rows="1" cols="40"> </textarea>
+            <input type="submit" value="Post comment">
+        </form> 
+    </div>
+    <script src="comment_box.js"></script>
 </body>
 </html>

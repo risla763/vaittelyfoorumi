@@ -29,11 +29,6 @@ def login_page():
 def register_page():
     return render_template("register_own_page.html")
 
-#@app.route("/logout")
-#def logout():
-    #users.logout()
-    #return redirect("/")
-
 @app.route("/register", methods=["POST"])
 def register():
     username = request.form["username"]
@@ -92,6 +87,8 @@ def fetch_old():
     else:
         return render_template("error.html", message="Viestin lähetys ei onnistunut")
     
-#@app.route("/logout", method = ["POST"])
-#def logout():
+@app.route("/logout")
+def logout():
+    del session["username"]
+    return render_template("index.html")
 
