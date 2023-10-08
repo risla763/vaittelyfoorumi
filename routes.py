@@ -4,6 +4,7 @@ import users
 import messages
 import headlines_to_list 
 import match_headline
+import profile_information
 
 
 @app.route("/")
@@ -17,10 +18,17 @@ def login():
     # TODO: check username and password
     if users.login(username,password): #tallentaa tietokantaan
         session["username"] = username
-        return render_template("new_user_hp.html", username=username)
+        information = profile_information.profile_information(username)
+        return render_template("profile.html", username=username,information=information)
     else:
         return render_template("error.html", message="Väärä tunnus tai salasana")
     
+@app.route("/profile", methods=["POST"])
+def profile():
+    username = session.get("username")
+    information = profile_information.profile_information(username)
+    return render_template("profile.html", username=username,information=information)
+
 @app.route("/login_page", methods= ["GET","POST"])
 def login_page():
     return render_template("login_own_page.html")

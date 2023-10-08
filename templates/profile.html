@@ -1,11 +1,21 @@
 <!DOCTYPE html>
+<link rel="stylesheet" href="static/profile.css"/>
 <html>
-<link rel="stylesheet" href="static/main_page.css"/>
 <head>
-    <title>This is the site that opens up when you are on the main page and here goes the links to the old debates</title>
+    <title>This is the site that forms the users profile</title>
 </head>
-
 <body>
+    <h2 id="profiletext">Your profile</h2>
+    <div class="debates_partaken_of">
+    Debates you have taken a part of:
+    </div>
+    <ul class="ul_profile">  
+        {% for headline in information %}
+        <div class="list_of_headlines">
+            <div class="headline"><a href="/old?h1={{ headline }}">{{ headline}}</a></div>
+        </div>
+        {% endfor %}
+    </ul>
     <div class="navbar">
         <form action="/profile" method="POST">
             <input id="profilee" type="submit" value="Profile">
@@ -20,16 +30,6 @@
             <input id="logout" type="submit" value="Log out">
         </form>
     </div>
-    <h1>All the debates</h1>
-    {% if headlines %}
-    <ul>
-        {% for hl in headlines %}
-            <li><a href="/old?h1={{ hl }}">{{ hl }}</a></li>
-        {% endfor %}
-    </ul>
-    {% else %}
-    Ei debaatteja
-    {% endif %}
-    <a href="/old_conversation"></a>
+    <h1 id="profileheader">{{ username }}</h1>
 </body>
 </html>

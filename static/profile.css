@@ -1,3 +1,12 @@
+.ul_profile {
+    color: rgb(177,161,253); 
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    top: 100px;
+    left: 5px;
+}
+
 body {
     background: rgb(15, 5, 70);
 
@@ -6,6 +15,31 @@ body {
 .navbar {
     color:rgb(177,161,253);
 }
+
+#profileheader {
+    color: rgb(184, 212, 255); 
+    position: absolute;
+    top: 0px;
+    left: 20px;
+    font-size: 40px;
+}
+
+#profiletext {
+    color: rgb(184, 212, 255); 
+    position: absolute;
+    top: 0px;
+    left: 400px;
+    font-size: 20px;
+}
+
+.debates_partaken_of {
+    color: rgb(177,161,253);
+    position: absolute;
+    top: 80px;
+    left: 20px;
+    font-size: 20px;
+}
+
 
 form #logout {
     position: absolute;
@@ -52,5 +86,3 @@ form #profilee {
     border: none;
     box-shadow: 0 0 10px rgba(177,161,253, 0.7);
 }
-
-
