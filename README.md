@@ -97,3 +97,5 @@ Laita user kohdalle oma käyttäjä.
 # Huomion arvoista
 
 - Myös kun teet uuden väittelyn ja valitset sille otsikon niin otsikon täytyy olla uniikki. Eli ei kahta samannimistä otsikkoa.
+
+- Joissain kohdissa on xss-haavoittuvuutta. Ne kohdat korjaan ennen lopullista palautusta. xss-haavoittuvuutta kun voi aloittaa uuden väittelyn esimerkiksi.
