@@ -41,3 +41,10 @@ form #headlines {
     border: none;
     box-shadow: 0 0 10px rgba(177,161,253, 0.7);
 }
+
+#profileheader {
+    color: rgb(177,161,253); 
+    position: absolute;
+    top: 60px;
+    left: 40px;
+}

@@ -24,7 +24,7 @@
     </div>
     <title>Tähän loop silmukka, jossa haetaan kaikki headlines db tiedostot ja kun
         niistä klikataan niin se johtaa "/old_conversation"</title>
-        <ul>  
+        <ul class="ul">  
         {% for tuple in messages_list %}
             <div class="comments_on_the_bottom">
                 <div class="comment">
@@ -38,7 +38,7 @@
         <form action="/comment" method="POST">
             <input type="hidden" name="headline" value="{{ headline }}">
             <label for="comment-box">Write here:</label>
-            <textarea id="comment-box" name="content" rows="1" cols="40"> </textarea>
+            <textarea id="comment-box" name="content" rows="1" cols="40"></textarea>
             <input type="submit" value="Post comment">
         </form> 
     </div>

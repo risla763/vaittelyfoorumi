@@ -1,15 +1,44 @@
 <!DOCTYPE html>
+<link rel="stylesheet" href="static/main_page.css"/>
 <html>
 <head>
-    <title>This is the site that opens up when you are a new user</title>
+    <title>This is the site that forms the users profile</title>
 </head>
 <body>
-    <h1>Welcome {{ username }}</h1>
-    <form action="/new_conversation" method="POST">
-        <button type="submit">Start a debate</button>
-    </form>
-    <p>
-        <a href="/headlines_list">Main page</a>
-    </p>
+    <ul class="ul_profile">  
+        Debates you have taken a part of:
+        {% for tuple in messages_list %}
+            <div class="comments_on_the_bottom">
+                <div class="comment">
+                    <div class="user">Username: {{ tuple.1 }}</div>
+                    <div class="message">{{ tuple.0|replace("\r\n", "<br/>")|safe }}</div>
+                </div>
+            </div>
+        {% endfor %}
+    </ul>
+    <ul class="ul_profile_started">  
+        Debates you have started:
+        {% for tuple in messages_list %}
+            <div class="comments_on_the_bottom">
+                <div class="comment">
+                    <div class="user">Username: {{ tuple.1 }}</div>
+                    <div class="message">{{ tuple.0|replace("\r\n", "<br/>")|safe }}</div>
+                </div>
+            </div>
+        {% endfor %}
+    </ul>
+    <div class="navbar">
+
+        <form action="/headlines_list" method="POST">
+            <input id="headlines" type="submit" value="Main page">
+        </form>
+        <form action="/new_conversation" method="POST">
+            <input id="new_convo" type="submit" value="Start a debate">
+        </form>
+        <form action="/logout" method="GET">
+            <input id="logout" type="submit" value="Log out">
+        </form>
+    </div>
+    <h1 id="profileheader">{{ username }}</h1>
 </body>
 </html>

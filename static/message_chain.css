@@ -17,7 +17,7 @@ ul {
   .comment {
     background-color: rgb(160, 160, 245);
     margin: 2px; /*viestit lähempänä toisiaan*/
-    margin-bottom: 20px; /*sama kuin inputfield*/
+    margin-bottom: 5px; /*sama kuin inputfield*/
     display: flex;
     flex-direction: column;
     flex-grow: 1;
@@ -61,4 +61,6 @@ body {
     height: calc(100% - 100px); 
 }
 
-
+.ul {
+    padding-bottom: 40px;
+}
