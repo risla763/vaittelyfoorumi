@@ -63,6 +63,8 @@ Käyttäjät jotka eivät ole osallistuneet väittelyihin voivat äänestää ku
 
 Käyttäjien, jotka ovat osallistuneet väittelyihin niin niiden profiilissa näkyy heidän "osallistuneet väittelyt" vieressä heidän kantansa ja pronsentit, mitä muut käyttäjät ovat äänestäneet, että kumpi puoli on voitolla. 
 
+Myös tulossa uusi tietokanta siihen, että kirjataan käyttäjän profiiliin ne väittelyt, jotka hän on aloittanut.
+
 # käyttöönotto:
 
 Kirjoita seuraavat komennot terminaaliin:
@@ -93,7 +95,5 @@ Laita user kohdalle oma käyttäjä.
 
 
 # Huomion arvoista
-
-- Kun on aloittamassa uutta väittelyä niin pitää kirjoittaa username kohtaan oikea username tietokannasta tai muuten tulee error.
 
 - Myös kun teet uuden väittelyn ja valitset sille otsikon niin otsikon täytyy olla uniikki. Eli ei kahta samannimistä otsikkoa.
