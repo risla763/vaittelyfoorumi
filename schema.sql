@@ -22,3 +22,8 @@ CREATE TABLE messages1 (
 
 CREATE INDEX idx_timestamp ON messages1 (timestamp);
 
+CREATE TABLE started_debates (
+    id SERIAL PRIMARY KEY,
+    username TEXT NOT NULL,
+    headline TEXT NOT NULL
+);

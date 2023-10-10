@@ -5,7 +5,7 @@ import messages
 import headlines_to_list 
 import match_headline
 import profile_information
-
+import started_debates_to_list
 
 @app.route("/")
 def index():
@@ -19,15 +19,17 @@ def login():
     if users.login(username,password): #tallentaa tietokantaan
         session["username"] = username
         information = profile_information.profile_information(username)
-        return render_template("profile.html", username=username,information=information)
+        started_deb_list = started_debates_to_list.started_debs(username)
+        return render_template("profile.html", username=username,information=information,started_debates=started_deb_list)
     else:
         return render_template("error.html", message="Väärä tunnus tai salasana")
     
 @app.route("/profile", methods=["POST"])
 def profile():
     username = session.get("username")
+    started_deb_list = started_debates_to_list.started_debs(username)
     information = profile_information.profile_information(username)
-    return render_template("profile.html", username=username,information=information)
+    return render_template("profile.html", username=username,information=information,started_debates=started_deb_list)
 
 @app.route("/login_page", methods= ["GET","POST"])
 def login_page():

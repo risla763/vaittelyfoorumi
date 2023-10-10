@@ -16,6 +16,16 @@
         </div>
         {% endfor %}
     </ul>
+    <div class="debates_started">
+        Debates you have started:
+        </div>
+    <ul class="started_de">  
+        {% for s_headline in started_debates %}
+        <div class="list_of_started_headlines">
+            <div class="started_headline"><a href="/old?h1={{ s_headline }}">{{ s_headline}}</a></div>
+        </div>
+        {% endfor %}
+    </ul>
     <div class="navbar">
         <form action="/profile" method="POST">
             <input id="profilee" type="submit" value="Profile">

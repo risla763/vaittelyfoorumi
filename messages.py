@@ -9,10 +9,14 @@ def send(username, message_text, headline):
     if user_id is None:
         return False  
 
+    sql = text("INSERT INTO started_debates (username, headline) "
+               "VALUES (:username, :headline)")
+    db.session.execute(sql, {"username": username, "headline": headline})
+    db.session.commit() #tässä started_debates username mtchaa kaikkiin debaatteihin..
+    #...mitä se user on alottanu
 
     sql = text("INSERT INTO messages1 (message_text, user_id, headline_id) "
                 "VALUES (:message_text, :user_id, :headline_id)")
-    print(f"tämä on tää{headline_id}")
     try:
         db.session.execute(sql, {"message_text": message_text, "user_id": user_id, "headline_id": headline_id})
         db.session.commit()
@@ -20,4 +24,5 @@ def send(username, message_text, headline):
     except Exception as e:
         db.session.rollback()
         return False
+
 

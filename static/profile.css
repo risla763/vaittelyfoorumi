@@ -7,6 +7,15 @@
     left: 5px;
 }
 
+.started_de {
+    color: rgb(177,161,253); 
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    top: 100px;
+    left: 500px;
+}
+
 body {
     background: rgb(15, 5, 70);
 
@@ -37,6 +46,14 @@ body {
     position: absolute;
     top: 80px;
     left: 20px;
+    font-size: 20px;
+}
+
+.debates_started {
+    color: rgb(177,161,253);
+    position: absolute;
+    top: 80px;
+    left: 500px;
     font-size: 20px;
 }
 

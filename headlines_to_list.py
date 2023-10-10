@@ -7,3 +7,4 @@ def headlines_list():
 
     headlines = [row[0] for row in data.fetchall()] #tekee listan
     return headlines
+

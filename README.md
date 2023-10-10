@@ -17,7 +17,9 @@ Kirjautuneen käyttäjän avatessa sovelluksen siinä näkyy käyttäjän oma pr
 -Profiilissa näkyy erikseen käyttäjän aloittamat väittelyt ja väittelyt, joihin tämä on osallistunut.
   -Nyt käyttäjän profiilissa näkyy vain väittelyt joihin käyttäjä on osallistunut ja aloittanut samassa jonossa...
 
+# main page
 
+-statistics (suosituin väittely yms.)
 
 # Väittelyketjun aloittaminen:
 
