@@ -75,3 +75,35 @@ form #profilee {
     border: none;
     box-shadow: 0 0 10px rgba(177,161,253, 0.7);
 }
+
+.comment.agree {
+  background-color: rgb(234, 245, 160);
+  margin: 2px; /*viestit lähempänä toisiaan*/
+  margin-bottom: 5px; /*sama kuin inputfield*/
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  width: 50vw;
+  height: max-content;
+  max-width: 100%;
+  white-space: pre-wrap;
+  word-break: break-word;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.comment.disagree {
+  background-color: rgb(171, 47, 144);
+  margin: 2px; /*viestit lähempänä toisiaan*/
+  margin-bottom: 5px; /*sama kuin inputfield*/
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  width: 50vw;
+  height: max-content;
+  max-width: 100%;
+  white-space: pre-wrap;
+  word-break: break-word;
+  padding: 10px;
+  box-sizing: border-box;
+}
