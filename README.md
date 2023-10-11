@@ -11,11 +11,16 @@ Kirjautuneen käyttäjän avatessa sovelluksen siinä näkyy käyttäjän oma pr
    -Näkyy, mutta näkyy nyt myös julkisena
 
 -Profiilissa myös näkee jollain pienellä merkillä väittelyn vieressä, etä kumpaa puolta väittelyssä kannattaa. Esim punainen ja sininen pallo  otsikon vieressä ja väittelystä painamalla saa lisätietoa tästä...
+   -
 
 -Käyttäjä voi poistaa aloittamansa keskustelut ja myös viestinsä väittelyketjuista, joihin hän on liittynyt.
+   -
 
 -Profiilissa näkyy erikseen käyttäjän aloittamat väittelyt ja väittelyt, joihin tämä on osallistunut.
-  -Nyt käyttäjän profiilissa näkyy vain väittelyt joihin käyttäjä on osallistunut ja aloittanut samassa jonossa...
+  -Tehty.
+# Chat page
+
+-Textarean koolla on joku raja.(se kun sitä siis venyttää ylöspäin)
 
 # main page
 
@@ -49,7 +54,7 @@ joiden otsikot sisältävät näitä sanoja.
 
 # Tarkemmat ohjeet mitä luvassa:
 
-Ennen viimeistä palautusta pitää lisätä 2 tietokantaa...
+Ennen viimeistä palautusta pitää lisätä 1 tietokanta...
 
 Nämä tietokannat liittyisivät tähän:
 
@@ -65,7 +70,6 @@ Käyttäjät jotka eivät ole osallistuneet väittelyihin voivat äänestää ku
 
 Käyttäjien, jotka ovat osallistuneet väittelyihin niin niiden profiilissa näkyy heidän "osallistuneet väittelyt" vieressä heidän kantansa ja pronsentit, mitä muut käyttäjät ovat äänestäneet, että kumpi puoli on voitolla. 
 
-Myös tulossa uusi tietokanta siihen, että kirjataan käyttäjän profiiliin ne väittelyt, jotka hän on aloittanut.
 
 # käyttöönotto:
 

@@ -1,6 +1,6 @@
 from database import db
 from sqlalchemy import text
-
+#Tähän tee että jos väittelyllä
 def profile_information(username):
     sql = text("SELECT id FROM users WHERE username =:username")
     user_id_1 = db.session.execute(sql, {"username": username})
@@ -24,6 +24,5 @@ def profile_information(username):
         result = db.session.execute(sql, {"headline_id":i})
         headline = result.scalar()
         help_list_2.append(headline)
-        print(f"TESTIII {help_list_2}")
     return help_list_2
 

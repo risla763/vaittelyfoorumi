@@ -6,6 +6,7 @@ import headlines_to_list
 import match_headline
 import profile_information
 import started_debates_to_list
+import poll_answers_to_db
 
 @app.route("/")
 def index():
@@ -70,7 +71,9 @@ def comment():
     username = session.get("username")
     content = request.form["content"]
     headline = request.form["headline"]
+    answer = request.form["answer"]
     messages_list = match_headline.matching_comment(headline,username,content)
+    poll = poll_answers_to_db.answers_to_db(headline,username,answer) #täällä kyselyn vastaukset tietokantaan
     if messages_list:
         return render_template("old_debate.html",headline=headline,messages_list=messages_list)
 
@@ -91,8 +94,7 @@ def headlines_to_list_route():
         return render_template("error.html", message="Ei vielä väittelyitä")
     
 @app.route("/old", methods=["GET","POST"])
-def fetch_old():
-    print("moro moro")  
+def fetch_old(): 
     headline = request.args.get("h1") #tässä pitää periä main_page h1, se josta painetaan linkissä
     messages_list = match_headline.matching_content(headline)
     if messages_list:

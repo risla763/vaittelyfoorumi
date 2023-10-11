@@ -27,3 +27,10 @@ CREATE TABLE started_debates (
     username TEXT NOT NULL,
     headline TEXT NOT NULL
 );
+
+CREATE TABLE answers (
+    id SERIAL PRIMARY KEY,
+    headline TEXT NOT NULL,
+    username TEXT NOT NULL,
+    answer TEXT NOT NULL
+);

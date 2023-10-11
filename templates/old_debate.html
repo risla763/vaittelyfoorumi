@@ -41,9 +41,11 @@
             <input type="hidden" name="headline" value="{{ headline }}">
             <label for="comment-box">Write here:</label>
             <textarea id="comment-box" name="content" rows="1" cols="40"></textarea>
-            <input type="submit" value="Post comment">
+            <input type="radio" name="answer" value="agree" required>
+            agree
+            <input type="radio" name="answer" value="disagree" required>disagree
+            <input type="submit" id="vote_and_comment" value="Post comment">
         </form> 
     </div>
-    <script src="comment_box.js"></script>
 </body>
 </html>
