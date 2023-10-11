@@ -3,9 +3,15 @@ from un_to_user_id import get_user_id_by_username
 from headline_to_db import insert_headline
 from sqlalchemy import text  
 
-def send(username, message_text, headline):
+def send(username, message_text, headline,answer):
     user_id = get_user_id_by_username(username)
     headline_id = insert_headline(headline)
+    print(f"TESTI TAAS {user_id}")
+    print(f"TESTI TAAS {message_text}")
+    print(f"TESTI TAAS {username}")
+    print(f"TESTI TAAS {headline}")
+    print(f"TESTI TAAS {message_text}")
+    print(f"TESTI TAAS {answer}")
     if user_id is None:
         return False  
 
@@ -14,15 +20,17 @@ def send(username, message_text, headline):
     db.session.execute(sql, {"username": username, "headline": headline})
     db.session.commit() #tässä started_debates username mtchaa kaikkiin debaatteihin..
     #...mitä se user on alottanu
-
-    sql = text("INSERT INTO messages1 (message_text, user_id, headline_id) "
-                "VALUES (:message_text, :user_id, :headline_id)")
+    #print(f"TESTI PÄÄSEEKÖ TÄNNE ASTI {message_text}")
+    sql = text("INSERT INTO messages1 (message_text, user_id, headline_id, answer) "
+                "VALUES (:message_text, :user_id, :headline_id, :answer)")
     try:
-        db.session.execute(sql, {"message_text": message_text, "user_id": user_id, "headline_id": headline_id})
+        db.session.execute(sql, {"message_text": message_text, "user_id": user_id, "headline_id": headline_id,"answer": answer})
         db.session.commit()
+        print(f"TESTI PÄÄSEEKÖ TÄNNE ASTI {message_text}")
         return True
     except Exception as e:
         db.session.rollback()
+        print(f"Error: {str(e)}")
         return False
 
 

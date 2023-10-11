@@ -58,10 +58,10 @@ def new_conversation():
 def send():
      #username pitää yhdistää sen user_id koska se on eri asia...ehkä messages filessä..
     username = session.get("username")
-    #username = request.form["username"]
+    answer = request.form["answer"]
     content = request.form["content"]
     headline_text = request.form["headline"]
-    if messages.send(username,content,headline_text):
+    if messages.send(username,content,headline_text,answer):
         return render_template("new_debate.html",username=username,headline=headline_text,content=[content])
     else:
         return render_template("error.html", message="Viestin lähetys ei onnistunut")

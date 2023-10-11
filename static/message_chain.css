@@ -77,7 +77,7 @@ form #profilee {
 }
 
 .comment.agree {
-  background-color: rgba(177,161,253, 0.7);
+  background-color: rgb(160, 160, 245);
   margin: 2px; /*viestit lähempänä toisiaan*/
   margin-bottom: 5px; /*sama kuin inputfield*/
   display: flex;
