@@ -72,10 +72,10 @@ def comment():
     content = request.form["content"]
     headline = request.form["headline"]
     answer = request.form["answer"]
-    messages_list = match_headline.matching_comment(headline,username,content)
     poll = poll_answers_to_db.answers_to_db(headline,username,answer) #täällä kyselyn vastaukset tietokantaan
+    messages_list = match_headline.matching_comment(headline,username,content,answer)
     if messages_list:
-        return render_template("old_debate.html",headline=headline,messages_list=messages_list)
+        return render_template("old_debate.html",headline=headline,messages_list=messages_list,poll=poll)
 
     else:
         return render_template("error.html", message="Viestin lähetys ei onnistunut")

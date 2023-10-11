@@ -10,7 +10,7 @@ Kirjautuneen käyttäjän avatessa sovelluksen siinä näkyy käyttäjän oma pr
 -Käyttäjä muuten näkee kaikki väittelyt johon on osallistunut yksityisenä profiilissaan.
    -Näkyy, mutta näkyy nyt myös julkisena
 
--Profiilissa myös näkee jollain pienellä merkillä väittelyn vieressä, etä kumpaa puolta väittelyssä kannattaa. Esim punainen ja sininen pallo  otsikon vieressä ja väittelystä painamalla saa lisätietoa tästä...
+-Profiilissa myös näkee jollain pienellä merkillä väittelyn vieressä, että kumpaa puolta väittelyssä kannattaa. Esim punainen ja sininen pallo  otsikon vieressä ja väittelystä painamalla saa lisätietoa tästä...
    -
 
 -Käyttäjä voi poistaa aloittamansa keskustelut ja myös viestinsä väittelyketjuista, joihin hän on liittynyt.

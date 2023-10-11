@@ -29,7 +29,7 @@
         <ul class="ul">  
         {% for tuple in messages_list %}
             <div class="comments_on_the_bottom">
-                <div class="comment">
+                <div class="comment {{ tuple.2 }}">
                     <div class="user">Username: {{ tuple.1 }}</div>
                     <div class="message">{{ tuple.0|replace("\r\n", "<br/>")|safe }}</div>
                 </div>
@@ -41,9 +41,9 @@
             <input type="hidden" name="headline" value="{{ headline }}">
             <label for="comment-box">Write here:</label>
             <textarea id="comment-box" name="content" rows="1" cols="40"></textarea>
-            <input type="radio" name="answer" value="agree" required>
-            agree
-            <input type="radio" name="answer" value="disagree" required>disagree
+            Do you agree with the person who started the debate?<input type="radio" name="answer" value="agree" required>
+            yes
+            <input type="radio" name="answer" value="disagree" required>no
             <input type="submit" id="vote_and_comment" value="Post comment">
         </form> 
     </div>

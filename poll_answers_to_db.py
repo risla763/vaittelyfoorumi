@@ -8,3 +8,4 @@ def answers_to_db(headline,username,answer):
     result_real = result.fetchone()
     print(f"Tässä on result: {result_real}")
     return result.scalar()
+
