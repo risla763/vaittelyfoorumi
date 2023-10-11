@@ -29,7 +29,7 @@
         <ul class="ul">  
         {% for tuple in messages_list %}
             <div class="comments_on_the_bottom">
-                <div class="comment.{{ poll }}">
+                <div class="comment">
                     <div class="user">Username: {{ tuple.1 }}</div>
                     <div class="message">{{ tuple.0|replace("\r\n", "<br/>")|safe }}</div>
                 </div>
