@@ -1,56 +1,64 @@
 Sovellus on keskustelufoorumi, jonka tarkoitus on että siellä voi väitellä erilaisista aiheista. 
-Sovellukseen voi kirjautua sisään ja ulos, kun on tehnyt oman käyttäjän.
-Kirjautuneen käyttäjän avatessa sovelluksen siinä näkyy käyttäjän oma profiili, ehdotetut keskustelut ja aloita keskustelu osiot.
+Sovellukseen voi kirjautua sisään ja ulos rekisteröitymisen jälkeen.
+Sovelluksen osiot ovat: käyttäjän oma profiili, etusivu, aloita uusi väittely sekä väittelyt. 
 
-# Profiili:
+# Sovelluksen osiot:
 
--Käytäjä voi näyttää siinä väittelyt, jotka hän haluaa näyttää. 
-   -Nyt käyttäjän profiilissa näkyy kaikki väittelyt, joihin hän on osallistunut. 
+## Profiili
 
--Käyttäjä muuten näkee kaikki väittelyt johon on osallistunut yksityisenä profiilissaan.
-   -Näkyy, mutta näkyy nyt myös julkisena
+Sisältää käyttäjää koskevia tietoja, esimerkiksi kaikki väittelyt joihin käyttäjä on osallistunut sekä erikseen kaikki väittelyt, jotka käyttäjä on aloittanut. (Molemmat tehty) 
 
--Profiilissa myös näkee jollain pienellä merkillä väittelyn vieressä, että kumpaa puolta väittelyssä kannattaa. Esim punainen ja sininen pallo  otsikon vieressä ja väittelystä painamalla saa lisätietoa tästä...
-   -
+Profiiliin voisi vielä lisätä kaverilistan, jossa on ihmiset joita käyttäjä seuraa. (ei vielä tehty)
 
--Käyttäjä voi poistaa aloittamansa keskustelut ja myös viestinsä väittelyketjuista, joihin hän on liittynyt.
-   -
+Myös yksi toiminto jonka voisi tehdä on että käyttäjä voi piilottaa profiilistaan väittelyt joihin hän on osallistunut tai aloittanut. Tällöin ne näkyisivät vain profiilin omistajalle. (ei vielä tehty)
 
--Profiilissa näkyy erikseen käyttäjän aloittamat väittelyt ja väittelyt, joihin tämä on osallistunut.
-  -Tehty.
-# Chat page
+Myös profiilikuvan sekä "bio:n" voisi lisätä. (ei vielä tehty)
 
--Textarean koolla on joku raja.(se kun sitä siis venyttää ylöspäin)
+Profiilissa myös näkee jollain pienellä merkillä väittelyn vieressä, että kumpaa puolta väittelyssä kannattaa. Esim punainen ja sininen pallo  otsikon vieressä. (ei vielä tehty)
 
-# main page
+Käyttäjä voi poistaa aloittamansa keskustelut. (ei vielä tehty)
 
--statistics (suosituin väittely yms.)
+## Chat page
 
-# Väittelyketjun aloittaminen:
+Näkymä, joka näkyy sovelluksen käyttäjälle kun haluaa lukea tai kommentoida yhtä väittelyä.
 
--Käyttäjä voi aloittaa väittelyketjun antamalla ketjulle otsikon ja aloitusviestin sisällön.
-   -Valmis
+Eri puolten viestiboxit eri väreillä. (tehty)
 
--Ketjun aloittanut käyttäjä voi päättää ketjun, jolloin väittely on ns päättynyt ja siihen ei enää voi lisätä viestejä, mutta väittelyketjuun osallistuneet voivat julkaista sen omassa profiilissaan, jolloin ihmiset jotka vierailevat heidän profiilessaan voivat äänestää kumpi puoli on voittanut.
+Voi kommentoida väittelyyn. (tehty)
+
+-Textarean koolla on jokin raja. (se kun sitä siis venyttää ylöspäin...työn alla)
 
 
+## main page
 
-# Väittelyketjuun liittyminen:
+Tässä näkyy kaikki väittelyt ja näihin on linkit, joista painamalla pääsee väittelyyn. (tehty)
 
--Sovelluksessa on osio, jossa käyttäjä voi kirjoittaa hakukoneeseen sanoja ja sieltä löytyy väittelyitä,
+Statistics (eli erilaisia tietoja käydyistä väittelyistä): 
+-suosituin väittely eli väittely mihin on tullut eniten viestejä. (ei vielä tehty)
+-Jokaisen väittelyn vieressä on prosentit, että kuinka paljon väitteen kanssa ollaan samaa mieltä sekä eri mieltä. (ei vielä tehty)
 
-joiden otsikot sisältävät näitä sanoja.
 
--Käyttäjä voi liittyä tai vain tarkastella väittelyä.
-   -Valmis
+## Väittelyketjun aloittaminen:
 
--Kun käyttäjä liittyy ketjuun hänen pitää valita kumpaa puolta hän kannattaa ennen kuin lähettää siihen viestejä. (tämä myös näkyy ketjussa muille siihen ketjuun osallistuneille)
+-Käyttäjä voi aloittaa väittelyketjun antamalla ketjulle otsikon ja aloitusviestin sisällön. (valmis)
+
+-Ketjun aloittanut käyttäjä voi päättää ketjun, jolloin väittely on ns päättynyt ja siihen ei enää voi lisätä viestejä, mutta väittelyketjuun osallistuneet voivat julkaista sen omassa profiilissaan, jolloin ihmiset jotka vierailevat heidän profiilessaan voivat äänestää kumpi puoli on voittanut. (ei vielä tehty)
+
+
+
+## Väittelyketjuun liittyminen:
+
+Sovelluksessa on osio, jossa käyttäjä voi kirjoittaa hakukoneeseen sanoja ja sieltä löytyy väittelyitä, joita käyttäjän hakemat sanat koskevat. (ei vielä tehty)
+
+Käyttäjä voi liittyä tai vain tarkastella väittelyä. (valmis)
+
+Kun käyttäjä liittyy ketjuun hänen pitää valita kumpaa puolta hän kannattaa ennen kuin lähettää siihen viestejä. (tehty)
 
 
 
 # Lisää ominaisuuksia:
 
--Käyttäjien profiileissa/etusivulla julkaistuja väittelyitä saa äänestää, että kumpi puoli väittelyssä on voittanut.
+-Käyttäjien profiileissa/etusivulla julkaistuja väittelyitä saa äänestää, että kumpi puoli väittelyssä on voittanut. (ei vielä tehty)
 
 # Tarkemmat ohjeet mitä luvassa:
 
