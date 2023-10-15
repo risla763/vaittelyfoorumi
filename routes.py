@@ -7,6 +7,7 @@ import match_headline
 import profile_information
 import started_debates_to_list
 import poll_answers_to_db
+import opinion_to_db
 
 @app.route("/")
 def index():
@@ -61,10 +62,11 @@ def send():
     answer = request.form["answer"]
     content = request.form["content"]
     headline_text = request.form["headline"]
+    statement_short = request.form["statement"]
+    opinion_to_db.opinions(headline_text,username,statement_short)
     poll_answers_to_db.answers_to_db(headline_text,username,answer)
-    ##ÄÄÄÄÄÄÄ ONKO TOI YLLÄ OLEVA OIKEINN???? TÄHÄN LASKEE SEN AGREEN percentages = headlines_to_list.count_percentages(headline_text)
     if messages.send(username,content,headline_text,answer):
-        return render_template("new_debate.html",username=username,headline=headline_text,content=[content])
+        return render_template("new_debate.html",username=username,headline=headline_text,content=[content],statemnt=statement_short)
     else:
         return render_template("error.html", message="Viestin lähetys ei onnistunut")
     
@@ -89,12 +91,12 @@ def main_page():
 
 @app.route("/headlines_list", methods=["GET","POST"])
 def headlines_to_list_route():
-    #TÄHÄN SE UUS MUTTA MISTÄ SE REPII NE HEADLINET:::VARMAAN TOSTA ALLA OLEVASTA
     headlines = headlines_to_list.headlines_list() 
-    answers = headlines_to_list.count_percentages() #tähän uusi table, johon lisätään myös sama headline kuin headlines ja sen viereen äänestysprosentit..jotka voidaan laskea samassa filessä
-    headlines_and_answers = headlines_to_list.combination(headlines,answers)
+    answers = headlines_to_list.count_percentages() 
+    opinions = headlines_to_list.opinions_list()
+    headlines_answers_opinions = headlines_to_list.combination(headlines,answers,opinions)
     if headlines_to_list.headlines_list():
-        return render_template("main_page.html",headlines=headlines,answers=answers,combo = headlines_and_answers )
+        return render_template("main_page.html",headlines=headlines,answers=answers,combo = headlines_answers_opinions )
     else:
         return render_template("error.html", message="Ei vielä väittelyitä")
     

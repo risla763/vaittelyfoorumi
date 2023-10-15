@@ -42,3 +42,10 @@ CREATE TABLE percentages (
     agree INT NOT NULL,
     disagree INT NOT NULL
 );
+
+CREATE TABLE opinions (
+    id SERIAL PRIMARY KEY,
+    username TEXT NOT NULL,
+    opinion TEXT NOT NULL,
+    headline TEXT NOT NULL
+);

@@ -55,5 +55,40 @@ form #profilee {
 
 
 #All_the_db_hd {
-    color: rgb(184, 212, 255);
+    color: rgb(160, 172, 242);
+    font-family: "Century gothic", CenturyGothic,Geneva,AppleGothic,sans-serif;
+    position: absolute;
+    left: 60px;
+    top: 5px;
 }
+
+
+#headline_link {        
+    padding: 6px 10px;
+    background: rgb(15, 5, 70);
+    color: rgb(158, 216, 218);
+    border: none;
+    font-size: 17px;
+    font-family: Consolas, monaco, monospace;
+}
+
+.list_of_headlines {
+    color: rgb(184, 212, 255);
+    position: relative;
+    left: 1px;
+    top: 100px;
+}
+
+.list {
+    list-style-type: none;
+}
+
+.opinion_statistics {
+    color: rgb(186, 190, 249);
+    position: relative;
+    left: 450px;
+    top: -26px;
+    font-family: Consolas, monaco, monospace;
+    font-size: 15px;
+}
+

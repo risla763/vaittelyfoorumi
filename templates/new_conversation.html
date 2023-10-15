@@ -11,13 +11,16 @@
         <input type="hidden" name="answer" value="agree">
         <br>
         Title of the debate: <br>
-        <input type="text" name="headline" value="Title" size="20" required>
+        <input type="text" name="headline" value="Title" size="20" maxlength="40" required>
         <br>
         Start the debate with your message: <br>
         <textarea name="content" rows="5" cols="40"></textarea> <br>
+        Write your statement again here in a short form where you could <br>
+        either say that you agree or disagree with it:<br>
+        <input type="text" name="statement" value="" size="20" maxlength="40" required>
+        <br>
         <input type="submit" value="Send">
         </form>
-
     </p>
     <a href="/headlines_list">Main page</a>
 </body>

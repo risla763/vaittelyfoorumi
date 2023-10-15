@@ -21,16 +21,27 @@
         </form>
     </div>
     <h1 id="All_the_db_hd">All the debates</h1>
+    <div class="list_of_headlines">
     {% if combo %}
-            <ul>
+            <ul class="list">
                 {% for hl in combo%}
-                        <li><a href="/old?h1={{ hl['headline'] }}">{{ hl['headline'] }}</a> agree: {{ hl['agree_count'] }} disagree: {{ hl['disagree_count'] }}</li>
+                        <li>
+                            <form action="/old?h1={{ hl['headline'] }}" method="POST">
+                            <input id= "headline_link" type="submit" value="{{ hl['headline'] }}">
+                            </form>
+                            <div class="opinion_statistics">
+                            <span class="opinion"> {{ hl['opinion'] }}:</span> 
+                            <span class="opinion_agree"> {{ hl['agree_count'] }} messages agree,</span>
+                            <span class="opinion_disagree">{{ hl['disagree_count'] }} messages disagree</span> 
+                            </div>
+                        </li>
                 {% endfor %}
             </ul>
         
         {% else %}
             Ei debaatteja
     {% endif %}
+    </div>
     <a href="/old_conversation"></a>
 </body>
 </html>

@@ -4,13 +4,19 @@ from sqlalchemy import text
 def headlines_list():
     sql = text("SELECT headline_text FROM headlines")
     data = db.session.execute(sql)
-
-    headlines = [row[0] for row in data.fetchall()] #tekee listan
-    #for headline in headlines:
-        #sql = text("INSET INTO percentages (headline,agree,disagree) VALUES (:headline,COALESCE(:agree, 0), COALESCE(:disagree, 0)")
-        #db.session.execute(sql, {"headline": headline})
-        #db.session.commit()         
+    headlines = [row[0] for row in data.fetchall()] #tekee listan    
     return headlines
+
+def opinions_list():
+    result_list = []
+    headlines = headlines_list()
+    for i in headlines:
+        sql = text("SELECT opinion FROM opinions WHERE headline = :headline")
+        result = db.session.execute(sql, {"headline": i}).fetchall()
+        for i in result:
+            result_list.append((i))
+    print(f"STATEEEMEEEENTSS {result_list}")
+    return result_list
 
 def count_percentages():
     result_list = []
@@ -23,11 +29,10 @@ def count_percentages():
     print(f"LOLOLOLOL {result_list}")
     return result_list
 
-def combination(headlines,answers):
-    combination_of_he_an = []
-    for h, a in zip(headlines,answers):
-        combination_of_he_an.append({'headline': h, 'agree_count': a[1], 'disagree_count': a[2]})
-    return combination_of_he_an
+def combination(headlines,answers,opinions):
+    combination_of_three = []
+    for h, a, o in zip(headlines,answers,opinions):
+        combination_of_three.append({'headline': h, 'agree_count': a[1], 'disagree_count': a[2], 'opinion':o[0]})
+    return combination_of_three
 
-    #HAE NE MÄÄRÄT JOSTAIN SE COUNT
-    #MÄÄRÄT KATO OLISKO JOTAIN SQL KOMENTOO JOKA SUORAAN LASKEE PROSENTIT SEN HEADLINEN MUKAAN
+
