@@ -21,14 +21,15 @@
         </form>
     </div>
     <h1 id="All_the_db_hd">All the debates</h1>
-    {% if headlines %}
-    <ul>
-        {% for hl in headlines %}
-            <li><a href="/old?h1={{ hl }}">{{ hl }}</a></li>
-        {% endfor %}
-    </ul>
-    {% else %}
-    Ei debaatteja
+    {% if combo %}
+            <ul>
+                {% for hl in combo%}
+                        <li><a href="/old?h1={{ hl['headline'] }}">{{ hl['headline'] }}</a> agree: {{ hl['agree_count'] }} disagree: {{ hl['disagree_count'] }}</li>
+                {% endfor %}
+            </ul>
+        
+        {% else %}
+            Ei debaatteja
     {% endif %}
     <a href="/old_conversation"></a>
 </body>

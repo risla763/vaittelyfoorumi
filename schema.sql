@@ -35,3 +35,10 @@ CREATE TABLE answers (
     username TEXT NOT NULL,
     answer TEXT NOT NULL
 );
+
+CREATE TABLE percentages (
+    id SERIAL PRIMARY KEY,
+    headline TEXT NOT NULL,
+    agree INT NOT NULL,
+    disagree INT NOT NULL
+);
