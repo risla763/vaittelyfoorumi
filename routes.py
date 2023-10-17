@@ -25,7 +25,7 @@ def login():
         started_deb_list = started_debates_to_list.started_debs(username)
         return render_template("profile.html", username=username,information=information,started_debates=started_deb_list)
     else:
-        return render_template("error.html", message="Väärä tunnus tai salasana")
+        return render_template("error.html", message=("L &#129313;"))
     
 @app.route("/profile", methods=["POST"])
 def profile():
@@ -96,6 +96,7 @@ def headlines_to_list_route():
     answers = headlines_to_list.count_percentages() 
     opinions = headlines_to_list.opinions_list()
     max_messages = count_max_messages_db.count_max()
+    print(f"Max: {max_messages}")
     headlines_answers_opinions = headlines_to_list.combination(headlines,answers,opinions)
     if headlines_to_list.headlines_list():
         return render_template("main_page.html",headlines=headlines,answers=answers,combo = headlines_answers_opinions, max_m = max_messages )
