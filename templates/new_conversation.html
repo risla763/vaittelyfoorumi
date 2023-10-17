@@ -1,27 +1,62 @@
 <!DOCTYPE html>
 <html>
+<link rel="stylesheet" href="static/start_a_db.css"/>
 <head>
     <title>This is the site that opens up when you wanna start a new debate</title>
 </head>
 <body>
-    <p>
-        <form action="/send" method="POST">
+    <p>    
+        <div class="navbar">
+        <form action="/profile" method="POST">
+            <input id="profilee" type="submit" value="Profile">
+        </form>
+        <form action="/headlines_list" method="POST">
+            <input id="headlines" type="submit" value="Main page">
+        </form>
+        <form action="/new_conversation" method="POST">
+            <input id="new_convo" type="submit" value="Start a debate">
+        </form>
+        <form action="/logout" method="GET">
+            <input id="logout" type="submit" value="Log out">
+        </form>
+    </div>
+        <h1 id="Start_a_db">Start a new debate!</h1>
+        <div class="all_the_text">
+        <form id="all_the_text" action="/send" method="POST">
+        <span class="username">
         Username: {{ username }} <br>
+        </span>
         <input type="hidden" name="username" value="{{ username }}" size="20">
         <input type="hidden" name="answer" value="agree">
         <br>
-        Title of the debate: <br>
-        <input type="text" name="headline" value="Title" size="20" maxlength="40" required>
+        <span class="headline">
+        Write here your title of the debate (it can be max 40 characters)<br> &nbsp; Examples:
+        "Should all schools have uniforms?", <br>"Is Pluto a planet?", "Cats vs Dogs": <br>
         <br>
-        Start the debate with your message: <br>
+        <input type="text" name="headline" value="" size="20" maxlength="40" required>
+        <br>
+        </span>
+        <span class="textarea">
+            Write here a brief opening statement for the debate on your topic. <br>
+            Your statement could introduce the topic, set the tone for the debate <br>
+            or present the key arguments of your side.": <br>
+            <br>
         <textarea name="content" rows="5" cols="40"></textarea> <br>
-        Write your statement again here in a short form where you could <br>
-        either say that you agree or disagree with it:<br>
+        </span>
+        <span class="stance">
+        Write again your statement here in a short form that you could <br>
+        either say that you agree or disagree with it (max lenght 40 characters)<br>
+        This can also be your headline if it suits! Examples: "Schools should have uniforms",<br>
+        "Pluto is a planet","Cats are cuter!":<br>
+        <br>
         <input type="text" name="statement" value="" size="20" maxlength="40" required>
         <br>
+        </span>
+        <span class="send_bt">
         <input type="submit" value="Send">
+        </span>
         </form>
+        </div>
     </p>
-    <a href="/headlines_list">Main page</a>
 </body>
 </html>

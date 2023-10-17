@@ -8,6 +8,7 @@ import profile_information
 import started_debates_to_list
 import poll_answers_to_db
 import opinion_to_db
+import count_max_messages_db
 
 @app.route("/")
 def index():
@@ -94,9 +95,10 @@ def headlines_to_list_route():
     headlines = headlines_to_list.headlines_list() 
     answers = headlines_to_list.count_percentages() 
     opinions = headlines_to_list.opinions_list()
+    max_messages = count_max_messages_db.count_max()
     headlines_answers_opinions = headlines_to_list.combination(headlines,answers,opinions)
     if headlines_to_list.headlines_list():
-        return render_template("main_page.html",headlines=headlines,answers=answers,combo = headlines_answers_opinions )
+        return render_template("main_page.html",headlines=headlines,answers=answers,combo = headlines_answers_opinions, max_m = max_messages )
     else:
         return render_template("error.html", message="Ei vielä väittelyitä")
     

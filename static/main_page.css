@@ -58,7 +58,7 @@ form #profilee {
     color: rgb(160, 172, 242);
     font-family: "Century gothic", CenturyGothic,Geneva,AppleGothic,sans-serif;
     position: absolute;
-    left: 60px;
+    left: 55px;
     top: 5px;
 }
 
@@ -67,6 +67,16 @@ form #profilee {
     padding: 6px 10px;
     background: rgb(15, 5, 70);
     color: rgb(158, 216, 218);
+    border: none;
+    font-size: 17px;
+    font-family: Consolas, monaco, monospace;
+}
+
+#headline_link:hover {        
+    padding: 6px 10px;
+    background: rgb(15, 5, 70);
+    color: rgb(246, 222, 213);
+    text-shadow: 0 0 10px rgb(246, 222, 213);
     border: none;
     font-size: 17px;
     font-family: Consolas, monaco, monospace;
@@ -92,3 +102,20 @@ form #profilee {
     font-size: 15px;
 }
 
+#Statistics_hd {
+    color: rgb(186, 190, 249);
+    font-family: "Century gothic", CenturyGothic,Geneva,AppleGothic,sans-serif;
+    position: absolute;
+    left: 500px;
+    top: 15px;
+    font-size: 25px;
+}
+
+.max {
+    color: rgb(250, 251, 222);
+    position: relative;
+    left: 490px;
+    top: -20px;
+    font-family: Consolas, monaco, monospace;
+    font-size: 15px;
+}

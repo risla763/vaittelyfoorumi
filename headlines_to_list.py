@@ -15,7 +15,6 @@ def opinions_list():
         result = db.session.execute(sql, {"headline": i}).fetchall()
         for i in result:
             result_list.append((i))
-    print(f"STATEEEMEEEENTSS {result_list}")
     return result_list
 
 def count_percentages():
@@ -26,7 +25,6 @@ def count_percentages():
         result = db.session.execute(sql, {"headline_text": i}).fetchall()
         for i in result:
             result_list.append((i))
-    print(f"LOLOLOLOL {result_list}")
     return result_list
 
 def combination(headlines,answers,opinions):

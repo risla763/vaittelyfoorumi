@@ -21,7 +21,13 @@
         </form>
     </div>
     <h1 id="All_the_db_hd">All the debates</h1>
+    <h2 id="Statistics_hd">Statistics:</h2>
     <div class="list_of_headlines">
+    {% if max_m %}
+    <div class="max">
+    "{{ max_m.0[0] }}" is the most popular debate with {{ max_m.1 }} messages!
+    </div>
+    {% endif %}
     {% if combo %}
             <ul class="list">
                 {% for hl in combo%}
@@ -30,9 +36,9 @@
                             <input id= "headline_link" type="submit" value="{{ hl['headline'] }}">
                             </form>
                             <div class="opinion_statistics">
-                            <span class="opinion"> {{ hl['opinion'] }}:</span> 
-                            <span class="opinion_agree"> {{ hl['agree_count'] }} messages agree,</span>
-                            <span class="opinion_disagree">{{ hl['disagree_count'] }} messages disagree</span> 
+                            <span class="opinion"> {{ hl['opinion'] }}: </span> 
+                            <span class="opinion_agree"> {{ hl['agree_count'] }} messages agree</span>
+                            <span class="opinion_disagree"> &nbsp; {{ hl['disagree_count'] }} messages disagree</span> 
                             </div>
                         </li>
                 {% endfor %}

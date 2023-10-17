@@ -18,6 +18,8 @@ Profiilissa myös näkee jollain pienellä merkillä väittelyn vieressä, että
 
 Käyttäjä voi poistaa aloittamansa keskustelut. (ei vielä tehty)
 
+Profiilissa näkyy kannattaako käyttäjä tällä hetkellä kumpaa puolta ja nämä lasketaan tietokantaan ja sitten main pagelle voi tulla kuinka monta käyttäjää kannattaa kumpaakin puolta. (Tee tämä seuraavaksi)
+
 ## Chat page
 
 Näkymä, joka näkyy sovelluksen käyttäjälle kun haluaa lukea tai kommentoida yhtä väittelyä.

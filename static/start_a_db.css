@@ -1,0 +1,125 @@
+body {
+    background: rgb(15, 5, 70);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100vh;
+    margin: 0;
+}
+#Start_a_db {
+    color: rgb(160, 172, 242);
+    font-family: "Century gothic", CenturyGothic,Geneva,AppleGothic,sans-serif;
+    display: flex;
+    text-align: center;
+    left: 50%;
+    margin-top: 10vh;
+
+}
+
+#all_the_text {
+    color: rgb(160, 172, 242);
+    font-family: "Century gothic", CenturyGothic,Geneva,AppleGothic,sans-serif;
+    position: flex;
+    background:rgb(15, 5, 70) ;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 2vh;
+
+}
+
+
+.username {
+    color: rgb(160, 172, 242);
+    font-family: "Century gothic", CenturyGothic,Geneva,AppleGothic,sans-serif;
+    position: absolute;
+    left: 20px;
+    top: 20px;
+
+}
+
+.headline {
+    color: rgb(160, 172, 242);
+    font-family: "Century gothic", CenturyGothic,Geneva,AppleGothic,sans-serif;
+    position: absolute;
+    text-align: center;
+    margin-top: 1vh;
+}
+
+.textarea {
+    color: rgb(160, 172, 242);
+    font-family: "Century gothic", CenturyGothic,Geneva,AppleGothic,sans-serif;
+    text-align: center;
+    margin-top: 18vh;
+
+}
+
+.stance {
+    color: rgb(160, 172, 242);
+    font-family: "Century gothic", CenturyGothic,Geneva,AppleGothic,sans-serif;
+    text-align: center;
+    margin-top: 5vh;
+
+}
+
+.send_bt {
+    color: rgb(160, 172, 242);
+    font-family: "Century gothic", CenturyGothic,Geneva,AppleGothic,sans-serif;
+    text-align: center;
+    margin-top: 4vh;
+
+}
+
+
+.navbar {
+    color:rgb(177,161,253);
+}
+
+form #logout {
+    position: absolute;
+    top: 10px;        
+    right: 10px;
+    padding: 6px 10px;
+    background: rgb(158, 216, 218);
+    color: rgb(0, 0, 0);
+    border: none;
+    box-shadow: 0 0 10px rgba(177,161,253, 0.7);
+}
+
+
+form #new_convo {
+    position: absolute;
+    top: 10px;        
+    right: 80px;
+    padding: 6px 10px;
+    background: rgb(158, 216, 218);
+    color: rgb(0, 0, 0);
+    border: none;
+    box-shadow: 0 0 10px rgba(177,161,253, 0.7);
+
+}
+
+form #headlines {
+    position: absolute;
+    top: 10px;        
+    right: 190px;
+    padding: 6px 10px;
+    background: rgb(158, 216, 218);
+    color: rgb(0, 0, 0);
+    border: none;
+    box-shadow: 0 0 10px rgba(177,161,253, 0.7);
+}
+
+form #profilee {
+    position: absolute;
+    top: 10px;        
+    right: 279px;
+    padding: 6px 10px;
+    background: rgb(158, 216, 218);
+    color: rgb(0, 0, 0);
+    border: none;
+    box-shadow: 0 0 10px rgba(177,161,253, 0.7);
+}
+

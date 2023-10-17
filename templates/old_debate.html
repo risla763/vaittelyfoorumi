@@ -40,7 +40,7 @@
         <form action="/comment" method="POST">
             <input type="hidden" name="headline" value="{{ headline }}">
             <label for="comment-box">Write here:</label>
-            <textarea id="comment-box" name="content" rows="1" cols="40"></textarea>
+            <textarea id="comment-box" name="content" rows="1" cols="40" required></textarea>
             Do you agree with the person who started the debate?<input type="radio" name="answer" value="agree" required>
             yes
             <input type="radio" name="answer" value="disagree" required>no
