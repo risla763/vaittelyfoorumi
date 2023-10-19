@@ -1,5 +1,7 @@
+from markupsafe import escape
 from app import app
 from flask import render_template, request, redirect, session
+import secrets
 import users
 import messages
 import headlines_to_list 
@@ -14,36 +16,45 @@ import count_max_messages_db
 def index():
     return render_template("index.html")
 
-@app.route("/login",methods=["POST"]) #ÄLÄ MUUTA 
+@app.route("/login",methods=["GET", "POST"]) #ÄLÄ MUUTA 
 def login():
-    username = request.form["username"]
-    password = request.form["password"]
-    # TODO: check username and password
-    if users.login(username,password): #tallentaa tietokantaan
-        session["username"] = username
-        information = profile_information.profile_information(username)
-        started_deb_list = started_debates_to_list.started_debs(username)
-        return render_template("profile.html", username=username,information=information,started_debates=started_deb_list)
-    else:
-        return render_template("error.html", message=("L &#129313;"))
+    if request.method == "POST":
+        username = request.form["username"]
+        password = request.form["password"]
+        if users.login(username,password): #tallentaa tietokantaan
+            session["username"] = username
+            information = profile_information.profile_information(username)
+            started_deb_list = started_debates_to_list.started_debs(username)
+            combo_of_h_a_s= profile_information.statement_and_latest_answer(username)
+            return render_template("profile.html", username=username,information=information,started_debates=started_deb_list,
+            combo_of_h_a_s=combo_of_h_a_s
+                                )
+        else:
+            return render_template("error.html", message=("L &#129313;"))
     
-@app.route("/profile", methods=["POST"])
+    return render_template("login_own_page.html")
+    
+@app.route("/profile")
 def profile():
     username = session.get("username")
+    opinion = profile_information.latest_answers_per_user(username)
     started_deb_list = started_debates_to_list.started_debs(username)
     information = profile_information.profile_information(username)
-    return render_template("profile.html", username=username,information=information,started_debates=started_deb_list)
+    combo_of_h_a_s= profile_information.statement_and_latest_answer(username)
+    return render_template(
+        "profile.html",
+        username=username,
+        information=information,
+        started_debates=started_deb_list,
+        combo_of_h_a_s=combo_of_h_a_s
+        )
 
-@app.route("/login_page", methods= ["GET","POST"])
-def login_page():
-    return render_template("login_own_page.html")
 
-@app.route("/register_page", methods= ["GET", "POST"])
-def register_page():
-    return render_template("register_own_page.html")
-
-@app.route("/register", methods=["POST"])
+@app.route("/register", methods=["GET", "POST"])
 def register():
+    if request.method == "GET":
+        return render_template("register_own_page.html")
+
     username = request.form["username"]
     password = request.form["password"]
     if users.register(username,password):
@@ -53,16 +64,20 @@ def register():
     
 @app.route("/new_conversation", methods=["GET","POST"])
 def new_conversation():
+    if request.method == "POST" and session["csrf_token"] != request.form.get("csrf_token"):
+        return render_template("error.html", message=("L &#129313;"))
     username = session.get("username")
     return render_template("new_conversation.html", username = username)
 
 @app.route("/send", methods=["POST"]) #Tämä route tärkeä
 def send():
-     #username pitää yhdistää sen user_id koska se on eri asia...ehkä messages filessä..
+    if request.method == "POST" and session["csrf_token"] != request.form.get("csrf_token"):
+        return render_template("error.html", message=("L &#129313;"))
     username = session.get("username")
     answer = request.form["answer"]
     content = request.form["content"]
     headline_text = request.form["headline"]
+    headline_text = str(escape(headline_text)).replace("\r\n", "</br>")
     statement_short = request.form["statement"]
     opinion_to_db.opinions(headline_text,username,statement_short)
     poll_answers_to_db.answers_to_db(headline_text,username,answer)
@@ -73,6 +88,8 @@ def send():
     
 @app.route("/comment", methods=["POST"])
 def comment():
+    if request.method == "POST" and session["csrf_token"] != request.form.get("csrf_token"):
+        return render_template("error.html", message=("L &#129313;"))
     username = session.get("username")
     content = request.form["content"]
     headline = request.form["headline"]
@@ -98,10 +115,10 @@ def headlines_to_list_route():
     max_messages = count_max_messages_db.count_max()
     print(f"Max: {max_messages}")
     headlines_answers_opinions = headlines_to_list.combination(headlines,answers,opinions)
-    if headlines_to_list.headlines_list():
-        return render_template("main_page.html",headlines=headlines,answers=answers,combo = headlines_answers_opinions, max_m = max_messages )
-    else:
-        return render_template("error.html", message="Ei vielä väittelyitä")
+    #if headlines:
+    return render_template("main_page.html",headlines=headlines,answers=answers,combo = headlines_answers_opinions, max_m = max_messages )
+    #else:
+       # return render_template("error.html", message="Ei vielä väittelyitä")
     
 @app.route("/old", methods=["GET","POST"])
 def fetch_old(): 

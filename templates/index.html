@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <link rel="stylesheet" href="static/main.css">
 <div class="buttons">
-    <form action="/login_page" method="POST">
-        <input class="round-3" id ="real_login_bt" type="submit" value="Log in">
-    </form>
-    <form action="/register_page" method="POST">
-        <input class= "round-3" id ="login_button" type="submit" value="Register">
-    </form>
+    <!--
+        <a class="round-3" href="login">log in</a>
+        <a class="round-3" href="register">Register</a>
+    -->
+        <form action="/login">
+            <input class="round-3" id ="real_login_bt" type="submit" value="Log in">
+        </form>
+        <form action="/register" >
+            <input class= "round-3" id ="login_button" type="submit" value="Register">
+        </form>
 </div>

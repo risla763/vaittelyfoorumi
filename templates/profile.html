@@ -11,10 +11,13 @@
     </div>
     <ul class="ul_profile">  
         {% for headline in information %}
-        <div class="list_of_headlines">
-            <div class="headline"><a href="/old?h1={{ headline }}">{{ headline}}</a></div>
-        </div>
-        {% endfor %}
+            {% set tuple = combo_of_h_a_s[ loop.index0 ] %}
+                <div class="list_of_headlines">
+                    <div class="headline"><a href="/old?h1={{ headline | urlencode }}"><span class="headline">{{ headline}}&nbsp;</span> <span class="statement">{{ tuple.statement }}:</span> <span class="opinion_a_or_d">{{ tuple.opinion }}</span></a></div>
+                </div>
+            {% endfor %}
+            
+
     </ul>
     <div class="debates_started">
         Debates you have started:
@@ -26,17 +29,18 @@
         </div>
         {% endfor %}
     </ul>
+    
     <div class="navbar">
-        <form action="/profile" method="POST">
+        <form action="/profile" >
             <input id="profilee" type="submit" value="Profile">
         </form>
-        <form action="/headlines_list" method="POST">
+        <form action="/headlines_list" >
             <input id="headlines" type="submit" value="Main page">
         </form>
-        <form action="/new_conversation" method="POST">
+        <form action="/new_conversation">
             <input id="new_convo" type="submit" value="Start a debate">
         </form>
-        <form action="/logout" method="GET">
+        <form action="/logout" >
             <input id="logout" type="submit" value="Log out">
         </form>
     </div>

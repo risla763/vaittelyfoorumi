@@ -2,7 +2,6 @@ from database import db
 from sqlalchemy import text
 
 def started_debs(username):
-    print(f"TÄMÄ ON USER_ID: {username}")
     sql = text("SELECT headline FROM started_debates WHERE username = :username")
     debates = db.session.execute(sql, {"username": username})
 

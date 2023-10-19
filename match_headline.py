@@ -1,3 +1,4 @@
+from markupsafe import escape
 from database import db
 from sqlalchemy import text
 
@@ -47,7 +48,7 @@ def matching_comment(h1,username,content,answer):
     sql = text("INSERT INTO messages1 (message_text, user_id, headline_id,answer) "
                 "VALUES (:message_text, :user_id, :headline_id, :answer)")
     try:
-        db.session.execute(sql, {"message_text": content, "user_id": user_id[0], "headline_id": headline_id[0], "answer":answer})
+        db.session.execute(sql, {"message_text": str(escape(content)), "user_id": user_id[0], "headline_id": headline_id[0], "answer":answer})
         db.session.commit()
     except Exception as e:
         print("EI ONNISTU")
@@ -68,6 +69,5 @@ def matching_comment(h1,username,content,answer):
         result = result.scalar()
         tuple = (message,result,answer)
         messages_list[index] = tuple
-    print(f"Tämän pitäisi olla hyvä {messages_list}")
 
     return messages_list

@@ -7,16 +7,16 @@
 
 <body>
     <div class="navbar">
-        <form action="/profile" method="POST">
+        <form action="/profile" >
             <input id="profilee" type="submit" value="Profile">
         </form>
-        <form action="/headlines_list" method="POST">
+        <form action="/headlines_list" >
             <input id="headlines" type="submit" value="Main page">
         </form>
-        <form action="/new_conversation" method="POST">
+        <form action="/new_conversation">
             <input id="new_convo" type="submit" value="Start a debate">
         </form>
-        <form action="/logout" method="GET">
+        <form action="/logout" >
             <input id="logout" type="submit" value="Log out">
         </form>
     </div>
@@ -25,14 +25,14 @@
     <div class="list_of_headlines">
     {% if max_m %}
     <div class="max">
-    "{{ max_m.0[0] }}" is the most popular debate with {{ max_m.1 }} messages!
+    "{{ max_m.0[0] | safe }}" is the most popular debate with {{ max_m.1 }} messages!
     </div>
     {% endif %}
     {% if combo %}
             <ul class="list">
                 {% for hl in combo%}
                         <li>
-                            <form action="/old?h1={{ hl['headline'] }}" method="POST">
+                            <form action="/old?h1={{ hl['headline'] | urlencode }}" method="POST">
                             <input id= "headline_link" type="submit" value="{{ hl['headline'] }}">
                             </form>
                             <div class="opinion_statistics">

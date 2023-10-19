@@ -8,16 +8,16 @@
 </head>
 <body>
     <div class="navbar">
-        <form action="/profile" method="POST">
+        <form action="/profile" >
             <input id="profilee" type="submit" value="Profile">
         </form>
-        <form action="/headlines_list" method="POST">
+        <form action="/headlines_list" >
             <input id="headlines" type="submit" value="Main page">
         </form>
-        <form action="/new_conversation" method="POST">
+        <form action="/new_conversation">
             <input id="new_convo" type="submit" value="Start a debate">
         </form>
-        <form action="/logout" method="GET">
+        <form action="/logout" >
             <input id="logout" type="submit" value="Log out">
         </form>
     </div>
@@ -45,6 +45,7 @@
             yes
             <input type="radio" name="answer" value="disagree" required>no
             <input type="submit" id="vote_and_comment" value="Post comment">
+            <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
         </form> 
     </div>
 </body>
