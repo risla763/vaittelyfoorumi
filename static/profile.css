@@ -58,15 +58,32 @@ body {
 }
 
 .statement {
-    color: rgb(177,161,253);
-    font-size: 20px;
+    padding: 6px 10px;
+    background: rgb(15, 5, 70);
+    color: rgb(158, 216, 218);
+    border: none;
+    font-size: 17px;
+    font-family: Consolas, monaco, monospace;
 }
 
 .headline {
-    color: rgb(177,161,253);
-    font-size: 20px;
+    padding: 6px 10px;
+    background: rgb(15, 5, 70);
+    color: rgb(158, 216, 218);
+    border: none;
+    font-size: 17px;
+    font-family: Consolas, monaco, monospace;
 }
 
+.opinion_a_or_d {
+    padding: 6px 10px;
+    background: rgb(15, 5, 70);
+    color: rgb(158, 216, 218);
+    border: none;
+    font-size: 17px;
+    font-family: Consolas, monaco, monospace;
+
+}
 
 form #logout {
     position: absolute;

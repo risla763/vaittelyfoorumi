@@ -25,7 +25,7 @@
     <ul class="started_de">  
         {% for s_headline in started_debates %}
         <div class="list_of_started_headlines">
-            <div class="started_headline"><a href="/old?h1={{ s_headline }}">{{ s_headline}}</a></div>
+            <div class="started_headline"><a href="/old?h1={{ s_headline | urlencode }}">{{ s_headline | safe}}</a></div>
         </div>
         {% endfor %}
     </ul>

@@ -1,3 +1,4 @@
+from markupsafe import escape
 from database import db
 from sqlalchemy import text
 

@@ -13,7 +13,7 @@ def opinions_list():
     headlines = headlines_list()
     for i in headlines:
         sql = text("SELECT opinion FROM opinions WHERE headline = :headline")
-        result = db.session.execute(sql, {"headline": str(escape(i))}).fetchall()
+        result = db.session.execute(sql, {"headline": i}).fetchall()
         for j in result:
             result_list.append((j))
     return result_list
@@ -23,7 +23,7 @@ def count_percentages():
     headlines = headlines_list()
     for i in headlines:
         sql = text("SELECT headline, SUM(CASE WHEN answer = 'agree' THEN 1 ELSE 0 END) as agree_count, SUM(CASE WHEN answer = 'disagree' THEN 1 ELSE 0 END) as disagree_count FROM answers WHERE headline = :headline_text GROUP BY headline")
-        result = db.session.execute(sql, {"headline_text": str(escape(i))}).fetchall()
+        result = db.session.execute(sql, {"headline_text": i}).fetchall()
         for j in result:
             result_list.append((j))
     return result_list

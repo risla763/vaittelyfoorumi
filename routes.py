@@ -74,11 +74,11 @@ def send():
     if request.method == "POST" and session["csrf_token"] != request.form.get("csrf_token"):
         return render_template("error.html", message=("L &#129313;"))
     username = session.get("username")
-    answer = request.form["answer"]
-    content = request.form["content"]
+    answer = str(escape(request.form["answer"])).replace("\r\n", "</br>")
+    content = str(escape(request.form["content"])).replace("\r\n", "</br>")
     headline_text = request.form["headline"]
     headline_text = str(escape(headline_text)).replace("\r\n", "</br>")
-    statement_short = request.form["statement"]
+    statement_short = str(escape(request.form["statement"])).replace("\r\n", "</br>")
     opinion_to_db.opinions(headline_text,username,statement_short)
     poll_answers_to_db.answers_to_db(headline_text,username,answer)
     if messages.send(username,content,headline_text,answer):
@@ -91,7 +91,7 @@ def comment():
     if request.method == "POST" and session["csrf_token"] != request.form.get("csrf_token"):
         return render_template("error.html", message=("L &#129313;"))
     username = session.get("username")
-    content = request.form["content"]
+    content = str(escape(request.form["content"]))
     headline = request.form["headline"]
     answer = request.form["answer"]
     poll = poll_answers_to_db.answers_to_db(headline,username,answer) #täällä kyselyn vastaukset tietokantaan
