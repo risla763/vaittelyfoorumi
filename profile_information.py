@@ -77,7 +77,10 @@ def statement_and_latest_answer(username):
     print("TUPLE:",  tuple_h_a)
     combination_of_h_a_s = []
     for tuple, statement in zip(tuple_h_a,list_of_statements):
-        combination_of_h_a_s.append({'headline': tuple[0], 'opinion': tuple[1], 'statement':statement})
+        if statement is not None:
+            combination_of_h_a_s.append({'headline': tuple[0], 'opinion': tuple[1], 'statement':statement[0]})
+        else:
+            combination_of_h_a_s.append({'headline': tuple[0], 'opinion': tuple[1], 'statement':statement})
         print("Latest answer:",combination_of_h_a_s )
     return combination_of_h_a_s
 

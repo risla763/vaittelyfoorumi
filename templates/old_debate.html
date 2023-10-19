@@ -22,7 +22,7 @@
         </form>
     </div>
     <div class="headline">
-    <h1>{{ headline }}</h1>
+    <h1>{{ headline | safe }}</h1>
     </div>
     <title>Tähän loop silmukka, jossa haetaan kaikki headlines db tiedostot ja kun
         niistä klikataan niin se johtaa "/old_conversation"</title>

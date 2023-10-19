@@ -13,7 +13,7 @@
         {% for headline in information %}
             {% set tuple = combo_of_h_a_s[ loop.index0 ] %}
                 <div class="list_of_headlines">
-                    <div class="headline"><a href="/old?h1={{ headline | urlencode }}"><span class="headline">{{ headline}}&nbsp;</span> <span class="statement">{{ tuple.statement }}:</span> <span class="opinion_a_or_d">{{ tuple.opinion }}</span></a></div>
+                    <div class="headline"><a href="/old?h1={{ headline | urlencode }}"><span class="headline">{{ headline | safe }}&nbsp;</span> <span class="statement">&nbsp;{{ tuple.statement }}:</span> <span class="opinion_a_or_d">{{ tuple.opinion }}</span></a></div>
                 </div>
             {% endfor %}
             

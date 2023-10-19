@@ -14,11 +14,10 @@ Myös yksi toiminto jonka voisi tehdä on että käyttäjä voi piilottaa profii
 
 Myös profiilikuvan sekä "bio:n" voisi lisätä. (ei vielä tehty)
 
-Profiilissa myös näkee jollain pienellä merkillä väittelyn vieressä, että kumpaa puolta väittelyssä kannattaa. Esim punainen ja sininen pallo  otsikon vieressä. (ei vielä tehty)
+Profiilissa myös näkee jollain pienellä merkillä väittelyn vieressä, että kumpaa puolta väittelyssä kannattaa. (tehty, mutta ui ei vielä hieno)
 
 Käyttäjä voi poistaa aloittamansa keskustelut. (ei vielä tehty)
 
-Profiilissa näkyy kannattaako käyttäjä tällä hetkellä kumpaa puolta ja nämä lasketaan tietokantaan ja sitten main pagelle voi tulla kuinka monta käyttäjää kannattaa kumpaakin puolta. (Tee tämä seuraavaksi)
 
 ## Chat page
 
@@ -39,6 +38,7 @@ Statistics (eli erilaisia tietoja käydyistä väittelyistä):
 -suosituin väittely eli väittely mihin on tullut eniten viestejä. (ei vielä tehty)
 -Jokaisen väittelyn vieressä on prosentit, että kuinka paljon väitteen kanssa ollaan samaa mieltä sekä eri mieltä. (ei vielä tehty)
 
+Kuinka monta käyttäjää kannattaa kumpaakin puolta väittelyiden vieressä. (Tee tämä seuraavaksi)
 
 ## Väittelyketjun aloittaminen:
 
@@ -52,7 +52,7 @@ Statistics (eli erilaisia tietoja käydyistä väittelyistä):
 
 Sovelluksessa on osio, jossa käyttäjä voi kirjoittaa hakukoneeseen sanoja ja sieltä löytyy väittelyitä, joita käyttäjän hakemat sanat koskevat. (ei vielä tehty)
 
-Käyttäjä voi liittyä tai vain tarkastella väittelyä. (valmis)
+Käyttäjä voi liittyä tai vain tarkastella väittelyä. (tehty)
 
 Kun käyttäjä liittyy ketjuun hänen pitää valita kumpaa puolta hän kannattaa ennen kuin lähettää siihen viestejä. (tehty)
 
@@ -114,4 +114,4 @@ Laita user kohdalle oma käyttäjä.
 
 - Myös kun teet uuden väittelyn ja valitset sille otsikon niin otsikon täytyy olla uniikki. Eli ei kahta samannimistä otsikkoa.
 
-- Joissain kohdissa on xss-haavoittuvuutta. Ne kohdat korjaan ennen lopullista palautusta. xss-haavoittuvuutta kun voi aloittaa uuden väittelyn esimerkiksi.
+- Joissain kohdissa on xss-haavoittuvuutta. Ne kohdat korjaan ennen lopullista palautusta. xss-haavoittuvuutta kun voi aloittaa uuden väittelyn esimerkiksi. (korjattu)

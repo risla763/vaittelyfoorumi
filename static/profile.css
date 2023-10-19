@@ -57,6 +57,16 @@ body {
     font-size: 20px;
 }
 
+.statement {
+    color: rgb(177,161,253);
+    font-size: 20px;
+}
+
+.headline {
+    color: rgb(177,161,253);
+    font-size: 20px;
+}
+
 
 form #logout {
     position: absolute;
@@ -103,3 +113,4 @@ form #profilee {
     border: none;
     box-shadow: 0 0 10px rgba(177,161,253, 0.7);
 }
+

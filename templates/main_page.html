@@ -33,10 +33,10 @@
                 {% for hl in combo%}
                         <li>
                             <form action="/old?h1={{ hl['headline'] | urlencode }}" method="POST">
-                            <input id= "headline_link" type="submit" value="{{ hl['headline'] }}">
+                            <input id= "headline_link" type="submit" value="{{ hl['headline'] | safe }}">
                             </form>
                             <div class="opinion_statistics">
-                            <span class="opinion"> {{ hl['opinion'] }}: </span> 
+                            <span class="opinion"> {{ hl['opinion'] | safe }}: </span> 
                             <span class="opinion_agree"> {{ hl['agree_count'] }} messages agree</span>
                             <span class="opinion_disagree"> &nbsp; {{ hl['disagree_count'] }} messages disagree</span> 
                             </div>
