@@ -1,3 +1,45 @@
+.profile_container {
+    display: flex;
+    margin-top: 200px;
+    gap: 20px;
+}
+
+.profile_box {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.information_debates {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    color: rgb(177,161,253);
+}
+
+.debates_headlines {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(177,161,253); 
+    font-size: 38px;
+    padding: 20px;
+}
+
+.flex_box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    border: 2px solid rgb(184, 212, 255);
+    padding: 15px;
+}
+
+.color_change {
+    color: rgb(181, 133, 233);    
+}
+
 .ul_profile {
     color: rgb(177,161,253); 
     position: fixed;
@@ -49,12 +91,28 @@ body {
     font-size: 20px;
 }
 
+
 .debates_started {
     color: rgb(177,161,253);
     position: absolute;
     top: 80px;
     left: 500px;
     font-size: 20px;
+    font-family: "Century gothic", CenturyGothic,Geneva,AppleGothic,sans-serif;
+}
+
+.debates_partaken_of {
+    color: rgb(160, 172, 242);
+    font-family: "Century gothic", CenturyGothic,Geneva,AppleGothic,sans-serif;
+    position: absolute;
+    margin-left: -5px;
+    margin-top: 25px;
+    font-size: 30px;
+}
+
+.space {
+    padding-right: 6px;
+    padding-left: 6px;
 }
 
 .statement {
@@ -64,15 +122,25 @@ body {
     border: none;
     font-size: 17px;
     font-family: Consolas, monaco, monospace;
+    text-decoration: none;
 }
-
+.headline a {
+    text-decoration: none;
+}
 .headline {
-    padding: 6px 10px;
+    display: flex;
     background: rgb(15, 5, 70);
     color: rgb(158, 216, 218);
-    border: none;
     font-size: 17px;
     font-family: Consolas, monaco, monospace;
+    text-decoration: none;
+}
+.headline:hover {
+    background: rgb(15, 5, 70);
+    font-size: 17px;
+    font-family: Consolas, monaco, monospace;
+    text-decoration: none;
+    text-shadow: 0 0 10px rgb(181, 133, 233);
 }
 
 .opinion_a_or_d {

@@ -6,29 +6,45 @@
 </head>
 <body>
     <h2 id="profiletext">Your profile</h2>
-    <div class="debates_partaken_of">
-    Debates you have taken a part of:
-    </div>
-    <ul class="ul_profile">  
-        {% for headline in information %}
-            {% set tuple = combo_of_h_a_s[ loop.index0 ] %}
-                <div class="list_of_headlines">
-                    <div class="headline"><a href="/old?h1={{ headline | urlencode }}"><span class="headline">{{ headline | safe }}&nbsp;</span> <span class="statement">&nbsp;{{ tuple.statement }}:</span> <span class="opinion_a_or_d">{{ tuple.opinion }}</span></a></div>
-                </div>
-            {% endfor %}
-            
+    <div class="profile_container">
+        <div class="profile_box">
+            <div class="debates_headlines">
+                Debates you have taken a part of:
+            </div>
+            <div class="information_debates">
+                <span>Headline</span>
+                <span>your opinion at the moment</span>
+            </div>
 
-    </ul>
-    <div class="debates_started">
-        Debates you have started:
+            {% for headline in information %}
+                {% set tuple = combo_of_h_a_s[ loop.index0 ] %}
+                    <a class="flex_box headline" href="/old?h1={{ headline | urlencode }}">
+                        <span class="headline space">
+                            {{ headline | safe }}&nbsp;&nbsp;
+                        </span>
+                        <span class="headline space">
+                            &nbsp;{{ tuple.statement | safe }}:
+                            you {{ tuple.opinion }}
+                        </span></a>
+            {% endfor %}
         </div>
-    <ul class="started_de">  
-        {% for s_headline in started_debates %}
-        <div class="list_of_started_headlines">
-            <div class="started_headline"><a href="/old?h1={{ s_headline | urlencode }}">{{ s_headline | safe}}</a></div>
+
+        <div class="profile_box">
+            <div class="debates_headlines">
+                Debates you have started:
+            </div>
+            <div class="information_debates">
+                <span>Headline</span>
+            </div>
+            {% for s_headline in started_debates %}
+                <a class="flex_box headline" href="/old?h1={{ s_headline | urlencode }}">
+                    <span class="color_change">
+                        {{ s_headline | safe}}
+                    </span>
+                </a>
+            {% endfor %}
         </div>
-        {% endfor %}
-    </ul>
+    </div>
     
     <div class="navbar">
         <form action="/profile" >
