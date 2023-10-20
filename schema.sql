@@ -6,7 +6,8 @@ CREATE TABLE users (
 
 CREATE TABLE headlines (
     headline_id SERIAL PRIMARY KEY,
-    headline_text TEXT NOT NULL
+    headline_text TEXT NOT NULL,
+    visible BOOLEAN
 );
 
 
@@ -26,7 +27,9 @@ CREATE INDEX idx_timestamp ON messages1 (timestamp);
 CREATE TABLE started_debates (
     id SERIAL PRIMARY KEY,
     username TEXT NOT NULL,
-    headline TEXT NOT NULL
+    headline TEXT NOT NULL,
+    visible BOOLEAN
+
 );
 
 CREATE TABLE answers (

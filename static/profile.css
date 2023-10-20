@@ -189,7 +189,8 @@ form #headlines {
 }
 
 form #profilee {
-    position: absolute;
+    position: relative;
+    margin-right: 20px;
     top: 10px;        
     right: 279px;
     padding: 6px 10px;

@@ -2,8 +2,10 @@ from database import db
 from sqlalchemy import text
 
 def started_debs(username):
-    sql = text("SELECT headline FROM started_debates WHERE username = :username")
+    sql = text("SELECT headline FROM started_debates WHERE username = :username AND visible = TRUE")
     debates = db.session.execute(sql, {"username": username})
 
     started_deb_headlines = [row[0] for row in debates.fetchall()] #tekee listan
+    if started_deb_headlines == []:
+        return None
     return started_deb_headlines

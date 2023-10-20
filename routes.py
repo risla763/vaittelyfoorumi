@@ -11,6 +11,7 @@ import started_debates_to_list
 import poll_answers_to_db
 import opinion_to_db
 import count_max_messages_db
+import delete_debate
 
 @app.route("/")
 def index():
@@ -33,6 +34,20 @@ def login():
             return render_template("error.html", message=("L &#129313;"))
     
     return render_template("login_own_page.html")
+
+@app.route("/delete_debate", methods=["GET","POST"])
+def del_debate():
+    #if request.method == "POST" and session["csrf_token"] != request.form.get("csrf_token"):
+        #return render_template("error.html", message=("L &#129313;"))
+    username = session.get("username")
+    headline_text = request.form["conversation_id"]#tarkista hakeeko?
+    #headline_text = str(escape(headline_text)).replace("\r\n", "</br>")
+    delete_debate.del_headline(headline_text)
+    delete_debate.del_headline_started(headline_text)
+    print("TESTIII",headline_text)
+    return redirect("/profile")
+
+
     
 @app.route("/profile")
 def profile():
@@ -41,6 +56,8 @@ def profile():
     started_deb_list = started_debates_to_list.started_debs(username)
     information = profile_information.profile_information(username)
     combo_of_h_a_s= profile_information.statement_and_latest_answer(username)
+    print("Tässä inffo", information)
+    #print("Tässä lisää", combo_of_h_a_s[1],combo_of_h_a_s )
     return render_template(
         "profile.html",
         username=username,
@@ -81,6 +98,7 @@ def send():
     statement_short = str(escape(request.form["statement"])).replace("\r\n", "</br>")
     opinion_to_db.opinions(headline_text,username,statement_short)
     poll_answers_to_db.answers_to_db(headline_text,username,answer)
+    #messages.boolean_to_db(headline_text) #UUSI
     if messages.send(username,content,headline_text,answer):
         return render_template("new_debate.html",username=username,headline=headline_text,content=[content],statemnt=statement_short)
     else:
@@ -115,10 +133,8 @@ def headlines_to_list_route():
     max_messages = count_max_messages_db.count_max()
     print(f"Max: {max_messages}")
     headlines_answers_opinions = headlines_to_list.combination(headlines,answers,opinions)
-    #if headlines:
     return render_template("main_page.html",headlines=headlines,answers=answers,combo = headlines_answers_opinions, max_m = max_messages )
-    #else:
-       # return render_template("error.html", message="Ei vielä väittelyitä")
+
     
 @app.route("/old", methods=["GET","POST"])
 def fetch_old(): 

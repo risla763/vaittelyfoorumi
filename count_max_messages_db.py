@@ -2,7 +2,7 @@ from database import db
 from sqlalchemy import text
 
 def count_max():
-    sql = text("SELECT headline_id, COUNT(*) AS messages_count FROM messages1 GROUP BY headline_id")
+    sql = text("SELECT headline_id, COUNT(*) AS messages_count FROM messages1 WHERE headline_id IN ( SELECT headline_id FROM headlines WHERE visible = TRUE) GROUP BY headline_id")
     result = db.session.execute(sql).fetchall()
     result = result if result else [] #tähän tein korjauksen
     max = 0
@@ -18,4 +18,5 @@ def count_max():
         max_tuple = (max_id,max)
         return max_tuple
     else:
-        return max
+        print("L",max)
+        return ""

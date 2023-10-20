@@ -1,4 +1,3 @@
-from markupsafe import escape
 from database import db
 from un_to_user_id import get_user_id_by_username
 from headline_to_db import insert_headline
@@ -10,7 +9,7 @@ def send(username, message_text, headline,answer):
     if user_id is None:
         return False  
 
-    sql = text("INSERT INTO started_debates (username, headline) VALUES (:username, :headline)")
+    sql = text("INSERT INTO started_debates (username, headline, visible) VALUES (:username, :headline, TRUE) ")
     db.session.execute(sql, {"username": username, "headline": headline})
     db.session.commit() #tässä started_debates username mtchaa kaikkiin debaatteihin..
     #...mitä se user on alottanu
@@ -23,5 +22,6 @@ def send(username, message_text, headline,answer):
     except Exception as e:
         db.session.rollback()
         return False
+
 
 

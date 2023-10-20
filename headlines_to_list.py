@@ -3,9 +3,9 @@ from database import db
 from sqlalchemy import text
 
 def headlines_list():
-    sql = text("SELECT headline_text FROM headlines")
+    sql = text("SELECT headline_text FROM headlines WHERE visible = TRUE")
     data = db.session.execute(sql)
-    headlines = [row[0] for row in data.fetchall()] #tekee listan    
+    headlines = [headline[0] for headline in data.fetchall()]
     return headlines
 
 def opinions_list():
