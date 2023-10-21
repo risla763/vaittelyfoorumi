@@ -2,7 +2,7 @@
 <html>
 <link rel="stylesheet" href="static/main_page.css"/>
 <head>
-    <title>This is the site that opens up when you are on the main page and here goes the links to the old debates</title>
+    <title>This is the site that opens up when you are on the main page</title>
 </head>
 
 <body>
@@ -28,6 +28,22 @@
     "{{ max_m.0[0] | safe }}" is the most popular debate with {{ max_m.1 }} messages!
     </div>
     {% endif %}
+    {% if results %}
+    Headlines that contain {{ queryy }}:
+    <ul class="results_list">
+        {% for result in results %}
+            <li>
+                <form action="/old?h1={{ result[0] | urlencode }}" method="POST">
+                    <input id= "headline_link" type="submit" value="{{ result[0] | safe }}">
+                    </form>    
+        
+            </li>
+        {% endfor %}
+    {% if results == '[]' %}
+        <p>No results was found</p>
+    {% endif %}
+    </ul>
+    {% else %}
     {% if combo %}
             <ul class="list">
                 {% for hl in combo%}
@@ -45,8 +61,19 @@
             </ul>
         
         {% else %}
-            Ei debaatteja
+            <div class="no_debates yet">
+                Currently, there are no active debates available on the platform. <br>Whether you're a seasoned debater or new to the app,<br>don't worry—debates come and go,but there are<br>always new and exciting conversations on the horizon.
+
+
+            </div>
     {% endif %}
+    {% endif %}
+    <div class="search_bar">
+        <form action="/result" method="GET">
+            Hakusana: <input type="search" name="query">
+            <input type="submit" value="Search">
+            </form>
+    </div>
     </div>
     <a href="/old_conversation"></a>
 </body>

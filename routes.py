@@ -4,6 +4,7 @@ from flask import render_template, request, redirect, session
 import secrets
 import users
 import messages
+import search_headline
 import headlines_to_list 
 import match_headline
 import profile_information
@@ -47,12 +48,21 @@ def del_debate():
     print("TESTIII",headline_id)
     return redirect("/profile")
 
-
+@app.route("/result", methods=["GET"])
+def search():
+    query = request.args["query"]
+    search_results = search_headline.search(query)
+    #VÄLIAIKAINEN
+    headlines = headlines_to_list.headlines_list() 
+    answers = headlines_to_list.count_percentages() 
+    opinions = headlines_to_list.opinions_list()
+    max_messages = count_max_messages_db.count_max()
+    headlines_answers_opinions = headlines_to_list.combination(headlines,answers,opinions)
+    return render_template("main_page.html",headlines=headlines,answers=answers,combo = headlines_answers_opinions, max_m = max_messages,results=search_results,queryy=query )
     
 @app.route("/profile")
 def profile():
     username = session.get("username")
-    opinion = profile_information.latest_answers_per_user(username)
     started_deb_list = started_debates_to_list.started_debs(username)
     information = profile_information.profile_information(username)
     combo_of_h_a_s= profile_information.statement_and_latest_answer(username)
@@ -86,7 +96,7 @@ def new_conversation():
 
 @app.route("/send", methods=["POST"]) #Tämä route tärkeä
 def send():
-    if request.method == "POST" and session["csrf_token"] != request.form.get("csrf_token"):
+    if request.method == "POST" and session.get("csrf_token") != request.form.get("csrf_token"):
         return render_template("error.html", message=("L &#129313;"))
     username = session.get("username")
     answer = str(escape(request.form["answer"])).replace("\r\n", "</br>")
@@ -129,7 +139,6 @@ def headlines_to_list_route():
     answers = headlines_to_list.count_percentages() 
     opinions = headlines_to_list.opinions_list()
     max_messages = count_max_messages_db.count_max()
-    print(f"Max: {max_messages}")
     headlines_answers_opinions = headlines_to_list.combination(headlines,answers,opinions)
     return render_template("main_page.html",headlines=headlines,answers=answers,combo = headlines_answers_opinions, max_m = max_messages )
 

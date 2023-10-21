@@ -102,6 +102,24 @@ form #profilee {
     font-size: 15px;
 }
 
+.no_debates_yet {
+    color: rgb(184, 212, 255);
+    position: relative;
+    left: 1px;
+    top: 100px;
+}
+
+.search_bar {
+    position: absolute;
+    top: -95px;        
+    right: 390px;
+    padding: 6px 10px;
+    background: rgb(158, 216, 218);
+    color: rgb(0, 0, 0);
+    border: none;
+    box-shadow: 0 0 10px rgba(177,161,253, 0.7);
+    width: 300px;
+    }
 #Statistics_hd {
     color: rgb(186, 190, 249);
     font-family: "Century gothic", CenturyGothic,Geneva,AppleGothic,sans-serif;
