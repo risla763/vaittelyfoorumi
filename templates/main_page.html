@@ -48,7 +48,7 @@
             <ul class="list">
                 {% for hl in combo%}
                         <li>
-                            <form action="/old?h1={{ hl['headline'] | urlencode }}" method="POST">
+                            <form action="/old?h1={{ hl['headline'] | urlencode }}&id={{ hl['id'] }}" method="POST">
                             <input id= "headline_link" type="submit" value="{{ hl['headline'] | safe }}">
                             </form>
                             <div class="opinion_statistics">

@@ -13,6 +13,7 @@ import poll_answers_to_db
 import opinion_to_db
 import count_max_messages_db
 import delete_debate
+import end_debatee
 
 @app.route("/")
 def index():
@@ -27,9 +28,9 @@ def login():
             session["username"] = username
             information = profile_information.profile_information(username)
             started_deb_list = started_debates_to_list.started_debs(username)
-            combo_of_h_a_s= profile_information.statement_and_latest_answer(username)
+            combo_of_h_a_s_v= profile_information.statement_and_latest_answer(username)
             return render_template("profile.html", username=username,information=information,started_debates=started_deb_list,
-            combo_of_h_a_s=combo_of_h_a_s
+            combo_of_h_a_s_v=combo_of_h_a_s_v
                                 )
         else:
             return render_template("error.html", message=("L &#129313;"))
@@ -45,14 +46,22 @@ def del_debate():
     #headline_text = str(escape(headline_text)).replace("\r\n", "</br>")
     delete_debate.del_headline(headline_id)
     delete_debate.del_headline_started(headline_id)
-    print("TESTIII",headline_id)
     return redirect("/profile")
+
+@app.route("/end_debate", methods=["POST"])
+def end_debate():
+    headline_id = request.form["conversation_id"]
+    end_debatee.end_debate_headlines_db(headline_id)
+    end_debatee.end_debate_started_headlines_db(headline_id)
+
+    return redirect("/profile")
+
 
 @app.route("/result", methods=["GET"])
 def search():
     query = request.args["query"]
     search_results = search_headline.search(query)
-    #VÄLIAIKAINEN
+    #VÄLIAIKAINEN kokeile redirect("/main_page")
     headlines = headlines_to_list.headlines_list() 
     answers = headlines_to_list.count_percentages() 
     opinions = headlines_to_list.opinions_list()
@@ -65,13 +74,13 @@ def profile():
     username = session.get("username")
     started_deb_list = started_debates_to_list.started_debs(username)
     information = profile_information.profile_information(username)
-    combo_of_h_a_s= profile_information.statement_and_latest_answer(username)
+    combo_of_h_a_s_v= profile_information.statement_and_latest_answer(username)
     return render_template(
         "profile.html",
         username=username,
         information=information,
         started_debates=started_deb_list,
-        combo_of_h_a_s=combo_of_h_a_s
+        combo_of_h_a_s_v=combo_of_h_a_s_v
         )
 
 
@@ -136,19 +145,22 @@ def main_page():
 @app.route("/headlines_list", methods=["GET","POST"])
 def headlines_to_list_route():
     headlines = headlines_to_list.headlines_list() 
+    headline_ids = headlines_to_list.headline_ids_list()
     answers = headlines_to_list.count_percentages() 
     opinions = headlines_to_list.opinions_list()
     max_messages = count_max_messages_db.count_max()
-    headlines_answers_opinions = headlines_to_list.combination(headlines,answers,opinions)
+    headlines_answers_opinions = headlines_to_list.combination(headlines,answers,opinions,headline_ids)
     return render_template("main_page.html",headlines=headlines,answers=answers,combo = headlines_answers_opinions, max_m = max_messages )
 
     
 @app.route("/old", methods=["GET","POST"])
 def fetch_old(): 
     headline = request.args.get("h1") #tässä pitää periä main_page h1, se josta painetaan linkissä
+    headline_id = request.args.get("id") #UUTTA
+    is_it_ended = end_debatee.check_if_ended(headline_id) #uuttta
     messages_list = match_headline.matching_content(headline)
     if messages_list:
-        return render_template("old_debate.html",headline=headline,messages_list=messages_list)
+        return render_template("old_debate.html",headline=headline,messages_list=messages_list,is_not_ended=is_it_ended)
     else:
         return render_template("error.html", message="Viestin lähetys ei onnistunut")
     

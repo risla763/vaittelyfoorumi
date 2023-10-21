@@ -91,17 +91,39 @@ def statement_and_latest_answer(username):
         db.session.commit()
         statement = statement.fetchone()
         list_of_statements.append(statement)
-        x += 1
+    headline_id_list = just_headline_id_list(username) #POISTA
     print("statement:", list_of_statements)
     print("TUPLE:",  tuple_h_a)
-    combination_of_h_a_s = []
-    for tuple, statement in zip(tuple_h_a,list_of_statements):
+    print("VALUE:",  tuple_h_a)
+    combination_of_h_a_s_v = []
+    for tuple, statement,id in zip(tuple_h_a,list_of_statements,headline_id_list):
         if statement is not None:
-            combination_of_h_a_s.append({'headline': tuple[0], 'opinion': tuple[1], 'statement':statement[0]})
+            print("ID LOOPIN SISÄLLÄ:",  tuple_h_a)
+            combination_of_h_a_s_v.append({'headline': tuple[0], 'opinion': tuple[1], 'statement':statement[0], 'headline_id':id})
         else:
-            combination_of_h_a_s.append({'headline': tuple[0], 'opinion': tuple[1], 'statement':statement})
-    print("Latest answer:",combination_of_h_a_s )
-    if combination_of_h_a_s == []:
+            combination_of_h_a_s_v.append({'headline': tuple[0], 'opinion': tuple[1], 'statement':statement,'headline_id':id})
+    print("Latest answer:",combination_of_h_a_s_v )
+    if combination_of_h_a_s_v == []:
         return None
-    return combination_of_h_a_s
+    return combination_of_h_a_s_v
 
+def just_headline_id_list(username): #UUTTA EHKÄ POISTA
+    sql = text("SELECT id FROM users WHERE username =:username")
+    user_id_1 = db.session.execute(sql, {"username": username})
+    user_id = user_id_1.scalar()
+
+    sql = text("SELECT headline_id FROM messages1 WHERE user_id =:user_id" )
+    headline_id_1 = db.session.execute(sql, {"user_id": user_id})
+    headline_id = headline_id_1.fetchall()
+    headline_id_list = [i[0] for i in headline_id]
+    headline_id_list_true = []
+    for id in headline_id_list:
+        sql = text("SELECT 1 FROM headlines WHERE headline_id = :headline_id AND visible = TRUE")
+
+        result = db.session.execute(sql, {"headline_id": id}).scalar()
+        if result == 1:
+            print("MIKÄ TÄÄ ON", id)
+            headline_id_list_true.append(id)
+    print("HALOOO KATO TÄÄÄ",headline_id_list_true)
+    return headline_id_list_true
+            

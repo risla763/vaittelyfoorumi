@@ -9,7 +9,7 @@ def send(username, message_text, headline,answer):
     if user_id is None:
         return False  
 
-    sql = text("INSERT INTO started_debates (username, headline, visible) VALUES (:username, :headline, TRUE) ")
+    sql = text("INSERT INTO started_debates (username, headline, visible,not_ended) VALUES (:username, :headline, TRUE,TRUE) ")
     db.session.execute(sql, {"username": username, "headline": headline})
     db.session.commit() 
     sql = text("INSERT INTO messages1 (message_text, user_id, headline_id, answer) VALUES (:message_text, :user_id, :headline_id, :answer)")

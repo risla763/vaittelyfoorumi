@@ -36,6 +36,7 @@
             </div>
         {% endfor %}
         </ul>
+    {% if is_not_ended %}
     <div class="input"> 
         <form action="/comment" method="POST">
             <input type="hidden" name="headline" value="{{ headline }}">
@@ -48,5 +49,8 @@
             <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
         </form> 
     </div>
+    {% else %}
+        Moi
+    {% endif %}
 </body>
 </html>

@@ -29,9 +29,9 @@
                 </div>
                     {% if information is not none %}
                     {% for headline in information %}
-                        {% if combo_of_h_a_s is not none %}
-                                {% set tuple = combo_of_h_a_s[ loop.index0 ] %}
-                                    <a class="flex_box headline" href="/old?h1={{ headline | urlencode }}">
+                        {% if combo_of_h_a_s_v is not none %}
+                                {% set tuple = combo_of_h_a_s_v[ loop.index0 ] %}
+                                    <a class="flex_box headline" href="/old?h1={{ headline | urlencode }}&id={{ tuple.headline_id }}">
                                         <span class="headline space">
                                             {{ headline | safe }}&nbsp;&nbsp;
                                         </span>
@@ -53,7 +53,7 @@
                     <span>Headline</span>
                 </div>
                     {% for s_headline in started_debates %}
-                        <a class="flex_box headline" href="/old?h1={{ s_headline[0] | urlencode }}">
+                        <a class="flex_box headline" href="/old?h1={{ s_headline[0] | urlencode }}&id={{ s_headline[1] }}">
                             <span class="color_change">
                                 {{ s_headline[0] | safe}}
                             </span>
@@ -61,6 +61,10 @@
                                 <input type="hidden" name="conversation_id" value="{{ s_headline[1] }}">
                                 <input type="hidden" name="new_v" value="FALSE">
                                 <input type="submit" value="Delete">
+                            </form>
+                            <form id="end_button " action="/end_debate" method="POST">
+                                <input type="hidden" name="conversation_id" value="{{ s_headline[1] }}">
+                                <input type="submit" value="End the debate">
                             </form>
                         </a>
                     {% endfor %}

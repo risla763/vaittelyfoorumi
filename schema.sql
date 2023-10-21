@@ -7,7 +7,8 @@ CREATE TABLE users (
 CREATE TABLE headlines (
     headline_id SERIAL PRIMARY KEY,
     headline_text TEXT NOT NULL,
-    visible BOOLEAN
+    visible BOOLEAN,
+    not_ended BOOLEAN
 );
 
 
@@ -28,7 +29,8 @@ CREATE TABLE started_debates (
     id SERIAL PRIMARY KEY,
     username TEXT NOT NULL,
     headline TEXT NOT NULL,
-    visible BOOLEAN
+    visible BOOLEAN,
+    not_ended BOOLEAN
 
 );
 
