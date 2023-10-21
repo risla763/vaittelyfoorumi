@@ -11,9 +11,7 @@ def send(username, message_text, headline,answer):
 
     sql = text("INSERT INTO started_debates (username, headline, visible) VALUES (:username, :headline, TRUE) ")
     db.session.execute(sql, {"username": username, "headline": headline})
-    db.session.commit() #tässä started_debates username mtchaa kaikkiin debaatteihin..
-    #...mitä se user on alottanu
-    #print(f"TESTI PÄÄSEEKÖ TÄNNE ASTI {message_text}")
+    db.session.commit() 
     sql = text("INSERT INTO messages1 (message_text, user_id, headline_id, answer) VALUES (:message_text, :user_id, :headline_id, :answer)")
     try:
         db.session.execute(sql, {"message_text": message_text, "user_id": user_id, "headline_id": headline_id,"answer": answer})

@@ -36,14 +36,6 @@ def matching_comment(h1,username,content,answer):
     result = db.session.execute(sql, {"username": username})
     user_id = result.fetchone() #user id
   
-    #sql = text("SELECT answer FROM answers WHERE username = :username WHERE headline= :headline")
-    #result = db.session.execute(sql, {"username": username, "headline": h1})
-    #answer = result.fetchone() #answer
-
-    print(content)
-    print(user_id)
-    print(headline_id)
-    print(answer)
     sql = text("INSERT INTO messages1 (message_text, user_id, headline_id,answer) "
                 "VALUES (:message_text, :user_id, :headline_id, :answer)")
     try:

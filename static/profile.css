@@ -10,6 +10,11 @@
     width: 50%;
 }
 
+.new_user_info {
+    color: rgb(177,161,253);
+}
+
+
 .information_debates {
     display: flex;
     justify-content: space-between;
@@ -189,8 +194,7 @@ form #headlines {
 }
 
 form #profilee {
-    position: relative;
-    margin-right: 20px;
+    position: absolute;
     top: 10px;        
     right: 279px;
     padding: 6px 10px;

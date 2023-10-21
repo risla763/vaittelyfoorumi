@@ -14,9 +14,9 @@ def profile_information(username):
     for id in headline_id_list:
         sql = text("SELECT 1 FROM headlines WHERE headline_id = :headline_id AND visible = TRUE")
 
-        result = db.session.execute(sql, {"headline_id": id})
-        if result.scalar() == 1:
-            print("MIKÄ TÄÄ ON",result)
+        result = db.session.execute(sql, {"headline_id": id}).scalar()
+        if result == 1:
+            print("MIKÄ TÄÄ ON", id)
             headline_id_list_true.append(id)
 
 
@@ -30,6 +30,7 @@ def profile_information(username):
         else:
             help_list.append(i)
     print(f"LOPULLINEN {help_list}")
+    ##TÄSSÄ KATO ONKO HELP_LISTISSÄ SE FALSE VAI TRUE
     help_list_2 = []
     for i in help_list:
         sql = text("SELECT headline_text FROM headlines WHERE headline_id =:headline_id")
@@ -81,6 +82,7 @@ def statement_and_latest_answer(username):
     tuple_h_a = tuple_h_a if tuple_h_a else []
     list_of_statements = []
     x = 0
+    #tässä tee uus lista 
     for i in tuple_h_a:
         print("lollll",tuple_h_a[0])
         sql = text("SELECT opinion FROM opinions WHERE headline = :headline")

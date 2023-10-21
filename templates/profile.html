@@ -7,45 +7,61 @@
 <body>
     <h2 id="profiletext">Your profile</h2>
     <div class="profile_container">
+        {% if not information and not started_debates %}
+        <div class="new_user_info">
+            <span class="New_user">
+            Welcome to the Debate App!<br>
+            <br>
+            It looks like you're new here, and you haven't taken part in any debates or started one yet. Don't worry, you're just a step away from joining the vibrant world of discussions and insightful conversations.<br>
+            <br>
+            Why not get started? Engaging in debates can be a great way to share your thoughts, learn from others, and make your voice heard. Here's how you can begin:
+            </span>
+        </div>
+        {% endif %}
         <div class="profile_box">
-            <div class="debates_headlines">
-                Debates you have taken a part of:
-            </div>
-            <div class="information_debates">
-                <span>Headline</span>
-                <span>your opinion at the moment</span>
-            </div>
-                {% for headline in information %}
-                    {% if combo_of_h_a_s %}
-                            {% set tuple = combo_of_h_a_s[ loop.index0 ] %}
-                                <a class="flex_box headline" href="/old?h1={{ headline | urlencode }}">
-                                    <span class="headline space">
-                                        {{ headline | safe }}&nbsp;&nbsp;
-                                    </span>
-                                    <span class="headline space">
-                                        &nbsp;{{ tuple.statement | safe }}:
-                                        you {{ tuple.opinion }}
-                                    </span></a>
-                    {% endif %}           
-                {% endfor %}
+                {% if information %}
+                <div class="debates_headlines">
+                    Debates you have taken a part of:
+                </div>
+                <div class="information_debates">
+                    <span>Headline</span>
+                    <span>your opinion at the moment</span>
+                </div>
+                    {% if information is not none %}
+                    {% for headline in information %}
+                        {% if combo_of_h_a_s is not none %}
+                                {% set tuple = combo_of_h_a_s[ loop.index0 ] %}
+                                    <a class="flex_box headline" href="/old?h1={{ headline | urlencode }}">
+                                        <span class="headline space">
+                                            {{ headline | safe }}&nbsp;&nbsp;
+                                        </span>
+                                        <span class="headline space">
+                                            &nbsp;{{ tuple.statement | safe }}:
+                                            you {{ tuple.opinion }}
+                                        </span></a>
+                        {% endif %}           
+                    {% endfor %}
+                    {% endif %}
+                {% endif %}
             </div>
             <div class="profile_box">
+                {% if started_debates is not none %}
                 <div class="debates_headlines">
                     Debates you have started:
                 </div>
                 <div class="information_debates">
                     <span>Headline</span>
                 </div>
-                {% if started_debates %}
                     {% for s_headline in started_debates %}
-                        <a class="flex_box headline" href="/old?h1={{ s_headline | urlencode }}">
+                        <a class="flex_box headline" href="/old?h1={{ s_headline[0] | urlencode }}">
                             <span class="color_change">
-                                {{ s_headline | safe}}
+                                {{ s_headline[0] | safe}}
                             </span>
                             <form action="/delete_debate" method="POST">
-                                <input type="hidden" name="conversation_id" value="{{ s_headline }}">
-                                <input type="hidden" type="new_v" value="FALSE">
-                                <input type="submit" value="Delete"></form>
+                                <input type="hidden" name="conversation_id" value="{{ s_headline[1] }}">
+                                <input type="hidden" name="new_v" value="FALSE">
+                                <input type="submit" value="Delete">
+                            </form>
                         </a>
                     {% endfor %}
                 {% endif %}

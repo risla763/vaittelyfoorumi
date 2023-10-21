@@ -16,7 +16,7 @@ Myös profiilikuvan sekä "bio:n" voisi lisätä. (ei vielä tehty)
 
 Profiilissa myös näkee jollain pienellä merkillä väittelyn vieressä, että kumpaa puolta väittelyssä kannattaa. (tehty, mutta ui ei vielä hieno)
 
-Käyttäjä voi poistaa aloittamansa keskustelut. (ei vielä tehty)
+Käyttäjä voi poistaa aloittamansa keskustelut. (tehty)
 
 
 ## Chat page

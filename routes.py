@@ -40,11 +40,11 @@ def del_debate():
     #if request.method == "POST" and session["csrf_token"] != request.form.get("csrf_token"):
         #return render_template("error.html", message=("L &#129313;"))
     username = session.get("username")
-    headline_text = request.form["conversation_id"]#tarkista hakeeko?
+    headline_id = request.form["conversation_id"]#tarkista hakeeko?
     #headline_text = str(escape(headline_text)).replace("\r\n", "</br>")
-    delete_debate.del_headline(headline_text)
-    delete_debate.del_headline_started(headline_text)
-    print("TESTIII",headline_text)
+    delete_debate.del_headline(headline_id)
+    delete_debate.del_headline_started(headline_id)
+    print("TESTIII",headline_id)
     return redirect("/profile")
 
 
@@ -56,8 +56,6 @@ def profile():
     started_deb_list = started_debates_to_list.started_debs(username)
     information = profile_information.profile_information(username)
     combo_of_h_a_s= profile_information.statement_and_latest_answer(username)
-    print("Tässä inffo", information)
-    #print("Tässä lisää", combo_of_h_a_s[1],combo_of_h_a_s )
     return render_template(
         "profile.html",
         username=username,
