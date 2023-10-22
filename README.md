@@ -72,7 +72,7 @@ Statistics (eli erilaisia tietoja käydyistä väittelyistä):
 
 <a name="liity_vait"></a>
 
-Sovelluksessa on osio, jossa käyttäjä voi kirjoittaa hakukoneeseen sanoja ja sieltä löytyy väittelyitä, joita käyttäjän hakemat sanat koskevat. (ei vielä tehty)
+Sovelluksessa on osio, jossa käyttäjä voi kirjoittaa hakukoneeseen sanoja ja sieltä löytyy väittelyitä, joita käyttäjän hakemat sanat koskevat. (tehty)
 
 Käyttäjä voi liittyä tai vain tarkastella väittelyä. (tehty)
 
@@ -83,25 +83,6 @@ Kun käyttäjä liittyy ketjuun hänen pitää valita kumpaa puolta hän kannatt
 # Lisää ominaisuuksia:
 
 -Käyttäjien profiileissa/etusivulla julkaistuja väittelyitä saa äänestää, että kumpi puoli väittelyssä on voittanut. (ei vielä tehty)
-
-# Tarkemmat ohjeet mitä luvassa:
-
-Ennen viimeistä palautusta pitää lisätä 1 tietokanta...
-
-Nämä tietokannat liittyisivät tähän:
-
-Kun käyttäjä aloittaa väittelyn hänen pitää valita kahdesta väristä toinen ja tämän värinen hänen aloitusviestinsä "viestiboxi" on. Muut käyttäjät, jotka osallistuvat väittelyyn voivat lukea aloitusviestin ja päättää kannattavatko he tätä vai vastustavat tätä väitettä. Tällöin jos käyttäjä kannattaa aloitusviestin väitettä hän julkaistessa oman kommenttinsa samaan viestiketjuun, hän valitsee kahdesta väristä saman värin kuin ketjun aloitusviesti on, jolloin käyttäjän "viestiboxi" näkyy saman värisenä kuin väittelyn aloittajan viestiboxi. Ja jos käyttäjä ei kannata väitettä tämä valitsee toisen värin, jolloin tämän viestiboxi on sen värinen. 
-
-Käyttäjien profiilissa näkyy niiden väittelyiden vieressä jompi kumpi väri pienenä pallona, joiden puolella he väittelyssä ovat.
-
-Myös kun on valinnut kantansa sitä ei voi muuttaa.
-
-Toinen tietokanta voisi sisältää äänestystuloksia.
-
-Käyttäjät jotka eivät ole osallistuneet väittelyihin voivat äänestää kumpi puoli heidän mielestään on väitellyt paremmin. Tämä tapahtuu niin, että kun käyttäjä menee main pagelle niin ne väittelyt, joihin hän ei ole osallistunut niin niiden vieressä on nappi jossa lukee äänestä ja tällöin käytäjä voi äänestää kahdesta puolesta toista. Äänestämisen jälkeen käyttäjä näkee kumpi puoli on "johdolla". Tämä näkyy niin, että väittelyn viereen tulee pienet pronsentit jotka näyttävät mitä käyttäjät ovat äänestäneet. 
-
-Käyttäjien, jotka ovat osallistuneet väittelyihin niin niiden profiilissa näkyy heidän "osallistuneet väittelyt" vieressä heidän kantansa ja pronsentit, mitä muut käyttäjät ovat äänestäneet, että kumpi puoli on voitolla. 
-
 
 # käyttöönotto:
 
@@ -134,6 +115,5 @@ Laita user kohdalle oma käyttäjä.
 
 # Huomion arvoista
 
-- Myös kun teet uuden väittelyn ja valitset sille otsikon niin otsikon täytyy olla uniikki. Eli ei kahta samannimistä otsikkoa.
 
 - Joissain kohdissa on xss-haavoittuvuutta. Ne kohdat korjaan ennen lopullista palautusta. xss-haavoittuvuutta kun voi aloittaa uuden väittelyn esimerkiksi. (korjattu)
