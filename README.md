@@ -48,7 +48,7 @@ Voi kommentoida väittelyyn. (tehty)
 -Textarean koolla on jokin raja. (ei tehty)
 
 
-## main page
+## Etusivu
 
 <a name="main_page"></a>
 
