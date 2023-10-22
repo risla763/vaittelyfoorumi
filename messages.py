@@ -11,9 +11,17 @@ def answers_to_db(headline_id,username,answer):
     print(f"Tässä on result: {result_real}")
     return result.scalar()
 
-def send(username, message_text, headline,answer):
+def opinions(headline_id,username,opinion):
+    sql = text("INSERT INTO opinions (headline_id,username,opinion) VALUES (:headline_id, :username, :opinion) RETURNING opinion")
+    result = db.session.execute(sql, {"headline_id": headline_id, "username":username, "opinion": opinion} )
+    db.session.commit()
+    result_real = result.fetchone()
+    return result.scalar()
+
+def send(username, message_text, headline,answer,opinion):
     user_id = get_user_id_by_username(username)
     headline_id = insert_headline(headline)
+    opinion = opinions(headline_id,username,opinion)
     answers_to_db(headline_id,username,answer)
     if user_id is None:
         return False  

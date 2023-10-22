@@ -36,57 +36,57 @@ def profile_information(username):
         sql = text("SELECT headline_text FROM headlines WHERE headline_id =:headline_id")
         result = db.session.execute(sql, {"headline_id":i})
         headline = result.scalar()
-        help_list_2.append(headline)
+        help_list_2.append((headline,i))
     return help_list_2
 
 def latest_answers_per_user(username):
     sql = text("SELECT id FROM users WHERE username= :username")
     result = db.session.execute(sql, {"username":username})
+    #headline_list = profile_information(username)
     headline_list = profile_information(username)
     result = result.fetchone()
     result = result[0]
     print(f"result{result}")
     ans_headline = []
     print(f"result{headline_list}")
-    if headline_list: #TÄMÄN PITÄISI TARKISTAA ONKO USER_ID OSALLISTUNUT YHTEENKÄÄN VÄITTELYYN
-        
+    if headline_list:
+        x = 1 #tähän joku id list
         user_id = result
-        for headline in headline_list:
+        for tuple_headline_id in headline_list:
             #
-            sql = text("SELECT h.headline_id"
-                       " FROM messages1 m JOIN headlines h ON m.headline_id = h.headline_id"
-                       " WHERE h.headline_text = :headline AND h.visible = TRUE")
-            headline_id = db.session.execute(sql, {"headline":headline})
-            db.session.commit()
-            headline_id = headline_id.fetchall()
+            #sql = text("SELECT h.headline_id"
+                      # " FROM messages1 m JOIN headlines h ON m.headline_id = h.headline_id"
+                      # " WHERE h.headline_id = :headline_id AND h.visible = TRUE")
+            #headline_id = db.session.execute(sql, {"headline_id":headline_id})
+            #db.session.commit()
+            #headline_id = headline_id.fetchall()
+            headline_id = tuple_headline_id[1]
             if headline_id:
                 print("TÄSSÄ HEADLINE_ID", headline_id)
-                if headline_id:
-                    print("TÄSSÄ HEADLINE_ID", headline_id[0][0]) #tämä toimii ##TÄMÄ LISTA TÄSSÄ HEADLINE_ID [(1,), (1,), (1,), (1,), (1,)] ja headline_id[0]=(1,) NIISTÄ MUTTA LAITA ETTÄ NE ON SORTED JA JOS ON SAMA KAHTEEN KERTAAN NIII DELETE NII TÄSSÄ ON ID LISTA
-                #if headline_id == []:
-                    #return None #Jos ei oo debaatteja
-                headline_id = headline_id[0][0]
+                #if headline_id:
+                    #print("TÄSSÄ HEADLINE_ID", headline_id[0][0]) 
+                #headline_id = headline_id[0][0]
                 sql = text("SELECT answer FROM messages1 WHERE headline_id = :headline_id AND user_id = :user_id ORDER BY timestamp DESC LIMIT 1;")
                 result = db.session.execute(sql, {"user_id":user_id, "headline_id":headline_id})
                 answer = result.scalar()
                 db.session.commit()
-                tuple = (headline,answer)
+                tuple = (tuple_headline_id[0],answer,headline_id)
                 ans_headline.append(tuple)
                 print("Latest answer:", ans_headline)
-                #TÄHÄN LISTA HEADLINE_ID JA SEN USERNAMEN ANSWER
+                #TÄHÄN ASTI OIKEIN
         return ans_headline
     return None
 
 def statement_and_latest_answer(username):
-    tuple_h_a = latest_answers_per_user(username)
-    tuple_h_a = tuple_h_a if tuple_h_a else []
+    tuple_h_a_i = latest_answers_per_user(username)
+    tuple_h_a_i = tuple_h_a_i if tuple_h_a_i else []
     list_of_statements = []
     x = 0
     #tässä tee uus lista 
-    for i in tuple_h_a:
-        print("lollll",tuple_h_a[0])
-        sql = text("SELECT opinion FROM opinions WHERE headline = :headline")
-        statement = db.session.execute(sql,{"headline":tuple_h_a[x][0]})
+    for i in tuple_h_a_i:
+        print("HALOOOOOOOO",tuple_h_a_i[x][2])
+        sql = text("SELECT opinion FROM opinions WHERE headline_id = :headline_id")
+        statement = db.session.execute(sql,{"headline_id":tuple_h_a_i[x][2]})
         #tuple jossa on kolme kohtaa
         db.session.commit()
         statement = statement.fetchone()
@@ -94,12 +94,12 @@ def statement_and_latest_answer(username):
         x += 1
     headline_id_list = just_headline_id_list(username) #POISTA
     print("statement:", list_of_statements)
-    print("TUPLE:",  tuple_h_a)
-    print("VALUE:",  tuple_h_a)
+    print("TUPLE:",  tuple_h_a_i)
+    print("VALUE:",  tuple_h_a_i)
     combination_of_h_a_s_v = []
-    for tuple, statement,id in zip(tuple_h_a,list_of_statements,headline_id_list):
+    for tuple, statement,id in zip(tuple_h_a_i,list_of_statements,headline_id_list):
         if statement is not None:
-            print("ID LOOPIN SISÄLLÄ:",  tuple_h_a)
+            print("ID LOOPIN SISÄLLÄ:",  tuple_h_a_i)
             combination_of_h_a_s_v.append({'headline': tuple[0], 'opinion': tuple[1], 'statement':statement[0], 'headline_id':id})
         else:
             combination_of_h_a_s_v.append({'headline': tuple[0], 'opinion': tuple[1], 'statement':statement,'headline_id':id})

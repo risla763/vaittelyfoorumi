@@ -52,5 +52,5 @@ CREATE TABLE opinions (
     id SERIAL PRIMARY KEY,
     username TEXT NOT NULL,
     opinion TEXT NOT NULL,
-    headline TEXT NOT NULL
+    headline_id INT NOT NULL
 );

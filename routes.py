@@ -74,6 +74,7 @@ def profile():
     username = session.get("username")
     started_deb_list = started_debates_to_list.started_debs(username)
     information = profile_information.profile_information(username)
+
     combo_of_h_a_s_v= profile_information.statement_and_latest_answer(username)
     return render_template(
         "profile.html",
@@ -113,9 +114,9 @@ def send():
     headline_text = request.form["headline"]
     headline_text = str(escape(headline_text)).replace("\r\n", "</br>")
     statement_short = str(escape(request.form["statement"])).replace("\r\n", "</br>")
-    opinion_to_db.opinions(headline_text,username,statement_short)
+    #opinion_to_db.opinions(headline_text,username,statement_short) TURHA
     (headline_text,username,answer)
-    if messages.send(username,content,headline_text,answer):
+    if messages.send(username,content,headline_text,answer,statement_short):
         return render_template("new_debate.html",username=username,headline=headline_text,content=[content],statemnt=statement_short)
     else:
         return render_template("error.html", message="Viestin lähetys ei onnistunut")

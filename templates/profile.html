@@ -31,9 +31,9 @@
                     {% for headline in information %}
                         {% if combo_of_h_a_s_v is not none %}
                                 {% set tuple = combo_of_h_a_s_v[ loop.index0 ] %}
-                                    <a class="flex_box headline" href="/old?h1={{ headline | urlencode }}&id={{ tuple.headline_id }}">
+                                    <a class="flex_box headline" href="/old?h1={{ headline[0] | urlencode }}&id={{ tuple.headline_id }}">
                                         <span class="headline space">
-                                            {{ headline | safe }}&nbsp;&nbsp;
+                                            {{ headline[0] | safe }}&nbsp;&nbsp;
                                         </span>
                                         <span class="headline space">
                                             &nbsp;{{ tuple.statement | safe }}:
