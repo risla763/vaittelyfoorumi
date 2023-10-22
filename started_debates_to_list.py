@@ -3,6 +3,7 @@ from sqlalchemy import text
 
 
 def started_debs(username):
+    sql = text("SELECT ")
     sql = text(
         "SELECT headline,id FROM started_debates WHERE username = :username AND visible = TRUE order by id")
     debates = db.session.execute(sql, {"username": username})

@@ -11,7 +11,7 @@
 }
 
 .new_user_info {
-    color: rgb(177,161,253);
+    color: rgb(177, 161, 253);
 }
 
 
@@ -20,14 +20,14 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    color: rgb(177,161,253);
+    color: rgb(177, 161, 253);
 }
 
 .debates_headlines {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: rgb(177,161,253); 
+    color: rgb(177, 161, 253);
     font-size: 38px;
     padding: 20px;
 }
@@ -42,11 +42,11 @@
 }
 
 .color_change {
-    color: rgb(181, 133, 233);    
+    color: rgb(181, 133, 233);
 }
 
 .ul_profile {
-    color: rgb(177,161,253); 
+    color: rgb(177, 161, 253);
     position: fixed;
     justify-content: center;
     align-items: center;
@@ -55,7 +55,7 @@
 }
 
 .started_de {
-    color: rgb(177,161,253); 
+    color: rgb(177, 161, 253);
     position: fixed;
     justify-content: center;
     align-items: center;
@@ -69,11 +69,11 @@ body {
 }
 
 .navbar {
-    color:rgb(177,161,253);
+    color: rgb(177, 161, 253);
 }
 
 #profileheader {
-    color: rgb(184, 212, 255); 
+    color: rgb(184, 212, 255);
     position: absolute;
     top: 0px;
     left: 20px;
@@ -81,7 +81,7 @@ body {
 }
 
 #profiletext {
-    color: rgb(184, 212, 255); 
+    color: rgb(184, 212, 255);
     position: absolute;
     top: 0px;
     left: 400px;
@@ -89,7 +89,7 @@ body {
 }
 
 .debates_partaken_of {
-    color: rgb(177,161,253);
+    color: rgb(177, 161, 253);
     position: absolute;
     top: 80px;
     left: 20px;
@@ -98,17 +98,17 @@ body {
 
 
 .debates_started {
-    color: rgb(177,161,253);
+    color: rgb(177, 161, 253);
     position: absolute;
     top: 80px;
     left: 500px;
     font-size: 20px;
-    font-family: "Century gothic", CenturyGothic,Geneva,AppleGothic,sans-serif;
+    font-family: "Century gothic", CenturyGothic, Geneva, AppleGothic, sans-serif;
 }
 
 .debates_partaken_of {
     color: rgb(160, 172, 242);
-    font-family: "Century gothic", CenturyGothic,Geneva,AppleGothic,sans-serif;
+    font-family: "Century gothic", CenturyGothic, Geneva, AppleGothic, sans-serif;
     position: absolute;
     margin-left: -5px;
     margin-top: 25px;
@@ -120,6 +120,10 @@ body {
     padding-left: 6px;
 }
 
+.input {
+    color: rgb(184, 212, 255);
+}
+
 .statement {
     padding: 6px 10px;
     background: rgb(15, 5, 70);
@@ -129,9 +133,11 @@ body {
     font-family: Consolas, monaco, monospace;
     text-decoration: none;
 }
+
 .headline a {
     text-decoration: none;
 }
+
 .headline {
     display: flex;
     background: rgb(15, 5, 70);
@@ -140,6 +146,7 @@ body {
     font-family: Consolas, monaco, monospace;
     text-decoration: none;
 }
+
 .headline:hover {
     background: rgb(15, 5, 70);
     font-size: 17px;
@@ -160,47 +167,46 @@ body {
 
 form #logout {
     position: absolute;
-    top: 10px;        
+    top: 10px;
     right: 10px;
     padding: 6px 10px;
     background: rgb(158, 216, 218);
     color: rgb(0, 0, 0);
     border: none;
-    box-shadow: 0 0 10px rgba(177,161,253, 0.7);
+    box-shadow: 0 0 10px rgba(177, 161, 253, 0.7);
 }
 
 
 form #new_convo {
     position: absolute;
-    top: 10px;        
+    top: 10px;
     right: 80px;
     padding: 6px 10px;
     background: rgb(158, 216, 218);
     color: rgb(0, 0, 0);
     border: none;
-    box-shadow: 0 0 10px rgba(177,161,253, 0.7);
+    box-shadow: 0 0 10px rgba(177, 161, 253, 0.7);
 
 }
 
 form #headlines {
     position: absolute;
-    top: 10px;        
+    top: 10px;
     right: 190px;
     padding: 6px 10px;
     background: rgb(158, 216, 218);
     color: rgb(0, 0, 0);
     border: none;
-    box-shadow: 0 0 10px rgba(177,161,253, 0.7);
+    box-shadow: 0 0 10px rgba(177, 161, 253, 0.7);
 }
 
 form #profilee {
     position: absolute;
-    top: 10px;        
+    top: 10px;
     right: 279px;
     padding: 6px 10px;
     background: rgb(158, 216, 218);
     color: rgb(0, 0, 0);
     border: none;
-    box-shadow: 0 0 10px rgba(177,161,253, 0.7);
+    box-shadow: 0 0 10px rgba(177, 161, 253, 0.7);
 }
-

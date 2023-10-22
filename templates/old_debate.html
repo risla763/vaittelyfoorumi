@@ -42,7 +42,7 @@
             <input type="hidden" name="headline_id" value="{{ headline_id }}">
             <input type="hidden" name="headline" value="{{ headline }}">
             <label for="comment-box">Write here:</label>
-            <textarea id="comment-box" name="content" rows="1" cols="40" required></textarea>
+            <textarea id="comment-box" name="content" rows="1" cols="40" maxlenght="1000" rows="8" required></textarea>
             Do you agree with the person who started the debate?<input type="radio" name="answer" value="agree" required>
             yes
             <input type="radio" name="answer" value="disagree" required>no
@@ -51,7 +51,10 @@
         </form> 
     </div>
     {% else %}
-        Moi
+    <div class ="text_when_ended">
+        <p> Debate has ended. </p>
+    </div>
     {% endif %}
+
 </body>
 </html>
