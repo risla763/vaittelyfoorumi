@@ -1,10 +1,17 @@
+# Väittelyfoorumi
+
 Sovellus on keskustelufoorumi, jonka tarkoitus on että siellä voi väitellä erilaisista aiheista. 
-Sovellukseen voi kirjautua sisään ja ulos rekisteröitymisen jälkeen.
-Sovelluksen osiot ovat: käyttäjän oma profiili, etusivu, aloita uusi väittely sekä väittelyt. 
+Sovellukseen voi kirjautua sisään ja ulos, sen jälkeen kun on rekisteröitynyt käyttäjäksi.
+Sovelluksen osiot ovat: käyttäjän oma profiili, etusivu sekä aloita uusi väittely. 
 
 # Sovelluksen osiot:
 
+[Go to profiili](#profiili)
+
+
 ## Profiili
+
+<a name="profiili"></a>
 
 Sisältää käyttäjää koskevia tietoja, esimerkiksi kaikki väittelyt joihin käyttäjä on osallistunut sekä erikseen kaikki väittelyt, jotka käyttäjä on aloittanut. (Molemmat tehty) 
 
