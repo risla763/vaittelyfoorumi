@@ -16,10 +16,10 @@ def headline_ids_list():
 
 def opinions_list():
     result_list = []
-    headlines = headlines_list()
-    for i in headlines:
-        sql = text("SELECT opinion FROM opinions WHERE headline = :headline")
-        result = db.session.execute(sql, {"headline": i}).fetchall()
+    headline_ids = headline_ids_list()
+    for id in headline_ids:
+        sql = text("SELECT opinion FROM opinions WHERE id = :headline_id")
+        result = db.session.execute(sql, {"headline_id": id}).fetchall()
         for j in result:
             result_list.append((j))
     return result_list

@@ -9,7 +9,6 @@ import headlines_to_list
 import match_headline
 import profile_information
 import started_debates_to_list
-import poll_answers_to_db
 import opinion_to_db
 import count_max_messages_db
 import delete_debate
@@ -114,8 +113,7 @@ def send():
     headline_text = str(escape(headline_text)).replace("\r\n", "</br>")
     statement_short = str(escape(request.form["statement"])).replace("\r\n", "</br>")
     opinion_to_db.opinions(headline_text,username,statement_short)
-    poll_answers_to_db.answers_to_db(headline_text,username,answer)
-    #messages.boolean_to_db(headline_text) #UUSI
+    (headline_text,username,answer)
     if messages.send(username,content,headline_text,answer):
         return render_template("new_debate.html",username=username,headline=headline_text,content=[content],statemnt=statement_short)
     else:
@@ -129,10 +127,18 @@ def comment():
     content = str(escape(request.form["content"]))
     headline = request.form["headline"]
     answer = request.form["answer"]
-    poll = poll_answers_to_db.answers_to_db(headline,username,answer) #täällä kyselyn vastaukset tietokantaan
+    is_not_ended = True
+    poll = messages.answers_to_db(headline,username,answer) #täällä kyselyn vastaukset tietokantaan
     messages_list = match_headline.matching_comment(headline,username,content,answer)
+    #TÄSSÄ PITÄÄ HAKEA NOT_ENDED JA ANTAA SE TOLLE RETURN RENDERILLE JA HOITAA HOMMA
     if messages_list:
-        return render_template("old_debate.html",headline=headline,messages_list=messages_list,poll=poll)
+        return render_template(
+            "old_debate.html",
+            headline=headline,
+            messages_list=messages_list,
+            poll=poll,
+            is_not_ended=is_not_ended
+            )
 
     else:
         return render_template("error.html", message="Viestin lähetys ei onnistunut")
