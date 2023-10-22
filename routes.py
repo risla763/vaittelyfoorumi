@@ -65,7 +65,8 @@ def search():
     answers = headlines_to_list.count_percentages() 
     opinions = headlines_to_list.opinions_list()
     max_messages = count_max_messages_db.count_max()
-    headlines_answers_opinions = headlines_to_list.combination(headlines,answers,opinions)
+    headline_ids = headlines_to_list.headline_ids_list()
+    headlines_answers_opinions = headlines_to_list.combination(headlines,answers,opinions,headline_ids)
     return render_template("main_page.html",headlines=headlines,answers=answers,combo = headlines_answers_opinions, max_m = max_messages,results=search_results,queryy=query )
     
 @app.route("/profile")
@@ -125,19 +126,19 @@ def comment():
         return render_template("error.html", message=("L &#129313;"))
     username = session.get("username")
     content = str(escape(request.form["content"]))
+    headline_id = request.form["headline_id"]
     headline = request.form["headline"]
     answer = request.form["answer"]
     is_not_ended = True
-    poll = messages.answers_to_db(headline,username,answer) #täällä kyselyn vastaukset tietokantaan
-    messages_list = match_headline.matching_comment(headline,username,content,answer)
-    #TÄSSÄ PITÄÄ HAKEA NOT_ENDED JA ANTAA SE TOLLE RETURN RENDERILLE JA HOITAA HOMMA
+    poll = messages.answers_to_db(headline_id,username,answer)
+    messages_list = match_headline.matching_comment(headline_id,username,content,answer)
     if messages_list:
         return render_template(
             "old_debate.html",
             headline=headline,
             messages_list=messages_list,
             poll=poll,
-            is_not_ended=is_not_ended
+            is_not_ended=is_not_ended,headline_id=headline_id
             )
 
     else:
@@ -164,9 +165,9 @@ def fetch_old():
     headline = request.args.get("h1") #tässä pitää periä main_page h1, se josta painetaan linkissä
     headline_id = request.args.get("id") #UUTTA
     is_it_ended = end_debatee.check_if_ended(headline_id) #uuttta
-    messages_list = match_headline.matching_content(headline)
+    messages_list = match_headline.matching_content(headline_id)
     if messages_list:
-        return render_template("old_debate.html",headline=headline,messages_list=messages_list,is_not_ended=is_it_ended)
+        return render_template("old_debate.html",headline=headline,messages_list=messages_list,is_not_ended=is_it_ended,headline_id=headline_id)
     else:
         return render_template("error.html", message="Viestin lähetys ei onnistunut")
     

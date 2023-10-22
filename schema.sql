@@ -36,7 +36,6 @@ CREATE TABLE started_debates (
 
 CREATE TABLE answers (
     id SERIAL PRIMARY KEY,
-    headline TEXT NOT NULL,
     headline_id INT NOT NULL,
     username TEXT NOT NULL,
     answer TEXT NOT NULL

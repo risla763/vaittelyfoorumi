@@ -33,7 +33,7 @@
     <ul class="results_list">
         {% for result in results %}
             <li>
-                <form action="/old?h1={{ result[0] | urlencode }}" method="POST">
+                <form action="/old?h1={{ result[0] | urlencode }}&id={{ result[1] }}" method="POST">
                     <input id= "headline_link" type="submit" value="{{ result[0] | safe }}">
                     </form>    
         

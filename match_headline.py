@@ -1,15 +1,11 @@
 from database import db
 from sqlalchemy import text
 
-def matching_content(h1):
-    sql = text("SELECT headline_id FROM headlines WHERE headline_text = :headline_text")
-    result = db.session.execute(sql, {"headline_text": h1})
-
-    headline_id = result.fetchone()
+def matching_content(headline_id):
     if headline_id is not None:
  
         sql = text("SELECT message_text, user_id, answer FROM messages1 WHERE headline_id = :headline")
-        messages = db.session.execute(sql, {"headline": headline_id[0]})
+        messages = db.session.execute(sql, {"headline": headline_id})
         messages_list = [(row[0], row[1], row[2]) for row in messages.fetchall()]
     else:
          messages_list = []
@@ -24,22 +20,16 @@ def matching_content(h1):
 
     return messages_list
 
-def matching_comment(h1,username,content,answer):
-    sql = text("""SELECT
-      to_char(timestamp, 'HH24:MI:SS') from messages1;""")
-
-    sql = text("SELECT headline_id FROM headlines WHERE headline_text = :headline_text")
-    result = db.session.execute(sql, {"headline_text": h1})
-    headline_id = result.fetchone() #headline id
+def matching_comment(headline_id,username,content,answer):
 
     sql = text("SELECT id FROM users WHERE username = :username")
     result = db.session.execute(sql, {"username": username})
-    user_id = result.fetchone() #user id
+    user_id = result.scalar_one() #user id
   
     sql = text("INSERT INTO messages1 (message_text, user_id, headline_id,answer) "
                 "VALUES (:message_text, :user_id, :headline_id, :answer)")
     try:
-        db.session.execute(sql, {"message_text": content, "user_id": user_id[0], "headline_id": headline_id[0], "answer":answer})
+        db.session.execute(sql, {"message_text": content, "user_id": user_id, "headline_id": headline_id, "answer":answer})
         db.session.commit()
     except Exception as e:
         print("EI ONNISTU")
@@ -49,7 +39,7 @@ def matching_comment(h1,username,content,answer):
     if headline_id is not None:
  
         sql = text("SELECT message_text, user_id, answer FROM messages1 WHERE headline_id = :headline")
-        messages = db.session.execute(sql, {"headline": headline_id[0]})
+        messages = db.session.execute(sql, {"headline": headline_id})
         messages_list = [(row[0], row[1], row[2]) for row in messages.fetchall()]
     else:
          messages_list = []

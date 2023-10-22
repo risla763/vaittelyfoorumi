@@ -91,6 +91,7 @@ def statement_and_latest_answer(username):
         db.session.commit()
         statement = statement.fetchone()
         list_of_statements.append(statement)
+        x += 1
     headline_id_list = just_headline_id_list(username) #POISTA
     print("statement:", list_of_statements)
     print("TUPLE:",  tuple_h_a)
@@ -108,22 +109,15 @@ def statement_and_latest_answer(username):
     return combination_of_h_a_s_v
 
 def just_headline_id_list(username): #UUTTA EHKÄ POISTA
-    sql = text("SELECT id FROM users WHERE username =:username")
-    user_id_1 = db.session.execute(sql, {"username": username})
-    user_id = user_id_1.scalar()
-
-    sql = text("SELECT headline_id FROM messages1 WHERE user_id =:user_id" )
-    headline_id_1 = db.session.execute(sql, {"user_id": user_id})
-    headline_id = headline_id_1.fetchall()
-    headline_id_list = [i[0] for i in headline_id]
-    headline_id_list_true = []
-    for id in headline_id_list:
-        sql = text("SELECT 1 FROM headlines WHERE headline_id = :headline_id AND visible = TRUE")
-
-        result = db.session.execute(sql, {"headline_id": id}).scalar()
-        if result == 1:
-            print("MIKÄ TÄÄ ON", id)
-            headline_id_list_true.append(id)
-    print("HALOOO KATO TÄÄÄ",headline_id_list_true)
-    return headline_id_list_true
+    sql = text(
+        """
+        SELECT DISTINCT m.headline_id 
+        FROM messages1 m
+        inner join users u on m.user_id = u.id 
+        inner join headlines h on h.headline_id = m.headline_id
+        WHERE username =:username
+        AND h.visible=TRUE
+        """)
+    headline_id = db.session.execute(sql, {"username": username}).fetchall()
+    return [i[0] for i in headline_id ]
             
