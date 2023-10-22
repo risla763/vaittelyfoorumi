@@ -64,7 +64,7 @@ Statistics (eli erilaisia tietoja käydyistä väittelyistä):
 
 -Käyttäjä voi aloittaa väittelyketjun antamalla ketjulle otsikon, mielipiteensä ja aloitusviestin sisällön. (valmis)
 
--Ketjun aloittanut käyttäjä voi päättää ketjun, jolloin väittely on ns päättynyt ja siihen ei enää voi lisätä viestejä, mutta väittelyketjuun osallistuneet voivat julkaista sen omassa profiilissaan, jolloin ihmiset jotka vierailevat heidän profiilessaan voivat äänestää kumpi puoli on voittanut. (pantu alulle, mutta ei tehty loppuun (saataa olla bugeja))
+-Ketjun aloittanut käyttäjä voi päättää ketjun, jolloin väittely on ns päättynyt ja siihen ei enää voi lisätä viestejä, mutta väittelyketjuun osallistuneet voivat julkaista sen omassa profiilissaan, jolloin ihmiset jotka vierailevat heidän profiilessaan voivat äänestää kumpi puoli on voittanut. (pantu alulle, mutta ei tehty loppuun (jäi keskeneräiseksi))
 
 
 
