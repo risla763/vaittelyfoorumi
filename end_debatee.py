@@ -12,7 +12,7 @@ def end_debate_started_headlines_db(headline_id):
     db.session.commit()
     return True
 
-def check_if_ended(headline_id): #uutta
+def check_if_ended(headline_id):
     sql = text("SELECT not_ended FROM headlines WHERE headline_id= :headline_id order by headline_id")
     result = db.session.execute(sql, {"headline_id":headline_id})
     db.session.commit()

@@ -13,15 +13,12 @@ def login(username, password):
     else:
         if check_password_hash(user.password, password):
             session["user_id"] = user.id
-            session["csrf_token"] = secrets.token_hex(16) #TESTI
+            session["csrf_token"] = secrets.token_hex(16)
 
             return True
         else:
             return False
-
-#def logout():
-    #del session["user_id"]
-
+        
 def register(username, password):
     username = request.form["username"]
     password = request.form["password"]

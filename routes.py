@@ -1,7 +1,6 @@
 from markupsafe import escape
 from app import app
 from flask import render_template, request, redirect, session
-import secrets
 import users
 import messages
 import search_headline
@@ -9,7 +8,6 @@ import headlines_to_list
 import match_headline
 import profile_information
 import started_debates_to_list
-import opinion_to_db
 import count_max_messages_db
 import delete_debate
 import end_debatee
@@ -18,12 +16,12 @@ import end_debatee
 def index():
     return render_template("index.html")
 
-@app.route("/login",methods=["GET", "POST"]) #ÄLÄ MUUTA 
+@app.route("/login",methods=["GET", "POST"])
 def login():
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
-        if users.login(username,password): #tallentaa tietokantaan
+        if users.login(username,password):
             session["username"] = username
             information = profile_information.profile_information(username)
             started_deb_list = started_debates_to_list.started_debs(username)
@@ -38,11 +36,8 @@ def login():
 
 @app.route("/delete_debate", methods=["GET","POST"])
 def del_debate():
-    #if request.method == "POST" and session["csrf_token"] != request.form.get("csrf_token"):
-        #return render_template("error.html", message=("L &#129313;"))
     username = session.get("username")
-    headline_id = request.form["conversation_id"]#tarkista hakeeko?
-    #headline_text = str(escape(headline_text)).replace("\r\n", "</br>")
+    headline_id = request.form["conversation_id"]
     delete_debate.del_headline(headline_id)
     delete_debate.del_headline_started(headline_id)
     return redirect("/profile")
@@ -55,12 +50,10 @@ def end_debate():
 
     return redirect("/profile")
 
-
 @app.route("/result", methods=["GET"])
 def search():
     query = request.args["query"]
     search_results = search_headline.search(query)
-    #VÄLIAIKAINEN kokeile redirect("/main_page")
     headlines = headlines_to_list.headlines_list() 
     answers = headlines_to_list.count_percentages() 
     opinions = headlines_to_list.opinions_list()
@@ -104,7 +97,7 @@ def new_conversation():
     username = session.get("username")
     return render_template("new_conversation.html", username = username)
 
-@app.route("/send", methods=["POST"]) #Tämä route tärkeä
+@app.route("/send", methods=["POST"])
 def send():
     if request.method == "POST" and session.get("csrf_token") != request.form.get("csrf_token"):
         return render_template("error.html", message=("L &#129313;"))
@@ -114,7 +107,6 @@ def send():
     headline_text = request.form["headline"]
     headline_text = str(escape(headline_text)).replace("\r\n", "</br>")
     statement_short = str(escape(request.form["statement"])).replace("\r\n", "</br>")
-    #opinion_to_db.opinions(headline_text,username,statement_short) TURHA
     (headline_text,username,answer)
     if messages.send(username,content,headline_text,answer,statement_short):
         return render_template("new_debate.html",username=username,headline=headline_text,content=[content],statemnt=statement_short)
@@ -163,9 +155,9 @@ def headlines_to_list_route():
     
 @app.route("/old", methods=["GET","POST"])
 def fetch_old(): 
-    headline = request.args.get("h1") #tässä pitää periä main_page h1, se josta painetaan linkissä
-    headline_id = request.args.get("id") #UUTTA
-    is_it_ended = end_debatee.check_if_ended(headline_id) #uuttta
+    headline = request.args.get("h1")
+    headline_id = request.args.get("id")
+    is_it_ended = end_debatee.check_if_ended(headline_id)
     messages_list = match_headline.matching_content(headline_id)
     if messages_list:
         return render_template("old_debate.html",headline=headline,messages_list=messages_list,is_not_ended=is_it_ended,headline_id=headline_id)

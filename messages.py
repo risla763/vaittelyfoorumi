@@ -7,15 +7,12 @@ def answers_to_db(headline_id,username,answer):
     sql = text("INSERT INTO answers (headline_id,username,answer) VALUES (:headline_id, :username, :answer) RETURNING answer")
     result = db.session.execute(sql, {"headline_id": headline_id, "username":username, "answer": answer} )
     db.session.commit()
-    result_real = result.fetchone()
-    print(f"Tässä on result: {result_real}")
     return result.scalar()
 
 def opinions(headline_id,username,opinion):
     sql = text("INSERT INTO opinions (headline_id,username,opinion) VALUES (:headline_id, :username, :opinion) RETURNING opinion")
     result = db.session.execute(sql, {"headline_id": headline_id, "username":username, "opinion": opinion} )
     db.session.commit()
-    result_real = result.fetchone()
     return result.scalar()
 
 def send(username, message_text, headline,answer,opinion):
@@ -37,6 +34,4 @@ def send(username, message_text, headline,answer,opinion):
     except Exception as e:
         db.session.rollback()
         return False
-
-
 

@@ -16,7 +16,6 @@ def matching_content(headline_id):
         result = result.scalar()
         tuple = (message,result,answer)
         messages_list[index] = tuple
-    print(f"Tämän pitäisi olla hyvä {messages_list}")
 
     return messages_list
 
@@ -24,7 +23,7 @@ def matching_comment(headline_id,username,content,answer):
 
     sql = text("SELECT id FROM users WHERE username = :username")
     result = db.session.execute(sql, {"username": username})
-    user_id = result.scalar_one() #user id
+    user_id = result.scalar_one()
   
     sql = text("INSERT INTO messages1 (message_text, user_id, headline_id,answer) "
                 "VALUES (:message_text, :user_id, :headline_id, :answer)")
@@ -32,9 +31,7 @@ def matching_comment(headline_id,username,content,answer):
         db.session.execute(sql, {"message_text": content, "user_id": user_id, "headline_id": headline_id, "answer":answer})
         db.session.commit()
     except Exception as e:
-        print("EI ONNISTU")
         db.session.rollback()
-#tässä viesti meni messsages1 tietokantaan
     
     if headline_id is not None:
  

@@ -11,7 +11,6 @@ CREATE TABLE headlines (
     not_ended BOOLEAN
 );
 
-
 CREATE TABLE messages1 (
     message_id SERIAL PRIMARY KEY,
     message_text TEXT NOT NULL,
@@ -39,13 +38,6 @@ CREATE TABLE answers (
     headline_id INT NOT NULL,
     username TEXT NOT NULL,
     answer TEXT NOT NULL
-);
-
-CREATE TABLE percentages (
-    id SERIAL PRIMARY KEY,
-    headline TEXT NOT NULL,
-    agree INT NOT NULL,
-    disagree INT NOT NULL
 );
 
 CREATE TABLE opinions (

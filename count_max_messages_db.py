@@ -18,5 +18,4 @@ def count_max():
         max_tuple = (max_id,max)
         return max_tuple
     else:
-        print("L",max)
         return ""

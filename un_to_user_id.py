@@ -11,13 +11,3 @@ def get_user_id_by_username(username):
         return user[0]
     else:
         return None
-
-
-
-
-
-
-
-
-
-

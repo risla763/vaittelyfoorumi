@@ -40,5 +40,3 @@ def combination(headlines,answers,opinions,headline_ids):
     for h, a, o, i in zip(headlines,answers,opinions,headline_ids):
         combination_of_three.append({'headline': h, 'agree_count': a[1], 'disagree_count': a[2], 'opinion':o[0],'id':i})
     return combination_of_three
-
-
