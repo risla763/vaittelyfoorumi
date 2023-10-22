@@ -6,14 +6,22 @@ Sovelluksen osiot ovat: käyttäjän oma profiili, etusivu sekä aloita uusi vä
 
 # Sovelluksen osiot:
 
-[Go to profiili](#profiili)
+[Profiili](#profiili)
+
+[Väittely](#chat_page)
+
+[Etusivu](#main_page)
+
+[Uuden väittelyn aloittaminen](#start_debate")
+
+[Muuta](#liity_vait)
 
 
 ## Profiili
 
 <a name="profiili"></a>
 
-Sisältää käyttäjää koskevia tietoja, esimerkiksi kaikki väittelyt joihin käyttäjä on osallistunut sekä erikseen kaikki väittelyt, jotka käyttäjä on aloittanut. (Molemmat tehty) 
+Profiili sisältää käyttäjää koskevia tietoja, esimerkiksi kaikki väittelyt joihin käyttäjä on osallistunut sekä erikseen kaikki väittelyt, jotka käyttäjä on aloittanut. (Molemmat tehty) 
 
 Profiiliin voisi vielä lisätä kaverilistan, jossa on ihmiset joita käyttäjä seuraa. (ei vielä tehty)
 
@@ -21,41 +29,48 @@ Myös yksi toiminto jonka voisi tehdä on että käyttäjä voi piilottaa profii
 
 Myös profiilikuvan sekä "bio:n" voisi lisätä. (ei vielä tehty)
 
-Profiilissa myös näkee jollain pienellä merkillä väittelyn vieressä, että kumpaa puolta väittelyssä kannattaa. (tehty, mutta ui ei vielä hieno)
+Profiilissa myös näkee jollain pienellä merkillä väittelyn vieressä, että kumpaa puolta väittelyssä kannattaa viimeisen viestinsä perusteella. (tehty)
 
 Käyttäjä voi poistaa aloittamansa keskustelut. (tehty)
 
+Käyttäjä voi päättää aloittamansa keskustelut, jolloin niihin ei voi enää lisätät viestejä. (tehty, mutta tämä jäi hieman kesken)
 
 ## Chat page
 
-Näkymä, joka näkyy sovelluksen käyttäjälle kun haluaa lukea tai kommentoida yhtä väittelyä.
+<a name="chat_page"></a>
 
-Eri puolten viestiboxit eri väreillä. (tehty)
+Näkymä, joka näkyy käyttäjälle kun käyttäjä lukee tai kommentoi tiettyä väittelyä.(tehty)
+
+Eri puolten viestiboxit eri väreillä. Eli viestien tekstiboksit näkyvät eri väreillä riippuen siitä kumpaa puolta kannattaa. (tehty)
 
 Voi kommentoida väittelyyn. (tehty)
 
--Textarean koolla on jokin raja. (se kun sitä siis venyttää ylöspäin...työn alla)
+-Textarean koolla on jokin raja. (ei tehty)
 
 
 ## main page
 
+<a name="main_page"></a>
+
 Tässä näkyy kaikki väittelyt ja näihin on linkit, joista painamalla pääsee väittelyyn. (tehty)
 
 Statistics (eli erilaisia tietoja käydyistä väittelyistä): 
--suosituin väittely eli väittely mihin on tullut eniten viestejä. (ei vielä tehty)
--Jokaisen väittelyn vieressä on prosentit, että kuinka paljon väitteen kanssa ollaan samaa mieltä sekä eri mieltä. (ei vielä tehty)
-
-Kuinka monta käyttäjää kannattaa kumpaakin puolta väittelyiden vieressä. (Tee tämä seuraavaksi)
+-suosituin väittely eli väittely mihin on tullut eniten viestejä. (tehty)
+-Jokaisen väittelyn vieressä on luvut, että kuinka paljon väittelyn aloittajan kanssa ollaan samaa mieltä sekä eri mieltä. (tehty)
 
 ## Väittelyketjun aloittaminen:
 
--Käyttäjä voi aloittaa väittelyketjun antamalla ketjulle otsikon ja aloitusviestin sisällön. (valmis)
+<a name="start_debate"></a>
 
--Ketjun aloittanut käyttäjä voi päättää ketjun, jolloin väittely on ns päättynyt ja siihen ei enää voi lisätä viestejä, mutta väittelyketjuun osallistuneet voivat julkaista sen omassa profiilissaan, jolloin ihmiset jotka vierailevat heidän profiilessaan voivat äänestää kumpi puoli on voittanut. (ei vielä tehty)
+-Käyttäjä voi aloittaa väittelyketjun antamalla ketjulle otsikon, mielipiteensä ja aloitusviestin sisällön. (valmis)
+
+-Ketjun aloittanut käyttäjä voi päättää ketjun, jolloin väittely on ns päättynyt ja siihen ei enää voi lisätä viestejä, mutta väittelyketjuun osallistuneet voivat julkaista sen omassa profiilissaan, jolloin ihmiset jotka vierailevat heidän profiilessaan voivat äänestää kumpi puoli on voittanut. (pantu alulle, mutta ei tehty loppuun (saataa olla bugeja))
 
 
 
 ## Väittelyketjuun liittyminen:
+
+<a name="liity_vait"></a>
 
 Sovelluksessa on osio, jossa käyttäjä voi kirjoittaa hakukoneeseen sanoja ja sieltä löytyy väittelyitä, joita käyttäjän hakemat sanat koskevat. (ei vielä tehty)
 
