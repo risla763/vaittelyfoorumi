@@ -77,7 +77,6 @@ def profile():
         combo_of_h_a_s_v=combo_of_h_a_s_v
         )
 
-
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "GET":
@@ -109,7 +108,7 @@ def send():
     statement_short = str(escape(request.form["statement"])).replace("\r\n", "</br>")
     (headline_text,username,answer)
     if messages.send(username,content,headline_text,answer,statement_short):
-        return render_template("new_debate.html",username=username,headline=headline_text,content=[content],statemnt=statement_short)
+        return redirect ("/headlines_list")
     else:
         return render_template("error.html", message="Viestin lähetys ei onnistunut")
     
@@ -137,11 +136,6 @@ def comment():
     else:
         return render_template("error.html", message="Viestin lähetys ei onnistunut")
 
-    
-@app.route("/main_page", methods=["GET","POST"])
-def main_page():
-     return render_template("main_page.html")
-
 @app.route("/headlines_list", methods=["GET","POST"])
 def headlines_to_list_route():
     headlines = headlines_to_list.headlines_list() 
@@ -152,7 +146,6 @@ def headlines_to_list_route():
     headlines_answers_opinions = headlines_to_list.combination(headlines,answers,opinions,headline_ids)
     return render_template("main_page.html",headlines=headlines,answers=answers,combo = headlines_answers_opinions, max_m = max_messages )
 
-    
 @app.route("/old", methods=["GET","POST"])
 def fetch_old(): 
     headline = request.args.get("h1")
@@ -163,9 +156,8 @@ def fetch_old():
         return render_template("old_debate.html",headline=headline,messages_list=messages_list,is_not_ended=is_it_ended,headline_id=headline_id)
     else:
         return render_template("error.html", message="Viestin lähetys ei onnistunut")
-    
+
 @app.route("/logout")
 def logout():
     del session["username"]
     return render_template("index.html")
-
