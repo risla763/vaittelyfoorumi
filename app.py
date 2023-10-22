@@ -12,5 +12,4 @@ app.config['SQLALCHEMY_DATABASE_URI'] = environ.get("DATABASE_URL")
 
 db.init_app(app)
 
-import routes
-
+import routes  # nopep8

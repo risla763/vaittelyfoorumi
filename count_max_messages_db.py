@@ -1,10 +1,11 @@
 from database import db
 from sqlalchemy import text
 
+
 def count_max():
     sql = text("SELECT headline_id, COUNT(*) AS messages_count FROM messages1 WHERE headline_id IN ( SELECT headline_id FROM headlines WHERE visible = TRUE) GROUP BY headline_id")
     result = db.session.execute(sql).fetchall()
-    result = result if result else [] #tähän tein korjauksen
+    result = result if result else []
     max = 0
     max_id = 0
     for i in result:
@@ -12,10 +13,11 @@ def count_max():
             max = i[1]
             max_id = i[0]
     if max_id != 0 and max_id is not None:
-        sql = text("SELECT headline_text FROM headlines WHERE headline_id = :max_id")
+        sql = text(
+            "SELECT headline_text FROM headlines WHERE headline_id = :max_id")
         max_headline = db.session.execute(sql.bindparams(max_id=max_id))
         max_id = [i[0] for i in max_headline.fetchall()]
-        max_tuple = (max_id,max)
+        max_tuple = (max_id, max)
         return max_tuple
     else:
         return ""

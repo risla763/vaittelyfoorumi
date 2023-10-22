@@ -4,7 +4,7 @@ from flask import render_template, request, redirect, session
 import users
 import messages
 import search_headline
-import headlines_to_list 
+import headlines_to_list
 import match_headline
 import profile_information
 import started_debates_to_list
@@ -12,35 +12,40 @@ import count_max_messages_db
 import delete_debate
 import end_debatee
 
+
 @app.route("/")
 def index():
     return render_template("index.html")
 
-@app.route("/login",methods=["GET", "POST"])
+
+@app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
-        if users.login(username,password):
+        if users.login(username, password):
             session["username"] = username
             information = profile_information.profile_information(username)
             started_deb_list = started_debates_to_list.started_debs(username)
-            combo_of_h_a_s_v= profile_information.statement_and_latest_answer(username)
-            return render_template("profile.html", username=username,information=information,started_debates=started_deb_list,
-            combo_of_h_a_s_v=combo_of_h_a_s_v
-                                )
+            combo_of_h_a_s_v = profile_information.statement_and_latest_answer(
+                username)
+            return render_template("profile.html", username=username, information=information, started_debates=started_deb_list,
+                                   combo_of_h_a_s_v=combo_of_h_a_s_v
+                                   )
         else:
             return render_template("error.html", message=("L &#129313;"))
-    
+
     return render_template("login_own_page.html")
 
-@app.route("/delete_debate", methods=["GET","POST"])
+
+@app.route("/delete_debate", methods=["GET", "POST"])
 def del_debate():
     username = session.get("username")
     headline_id = request.form["conversation_id"]
     delete_debate.del_headline(headline_id)
     delete_debate.del_headline_started(headline_id)
     return redirect("/profile")
+
 
 @app.route("/end_debate", methods=["POST"])
 def end_debate():
@@ -50,32 +55,37 @@ def end_debate():
 
     return redirect("/profile")
 
+
 @app.route("/result", methods=["GET"])
 def search():
     query = request.args["query"]
     search_results = search_headline.search(query)
-    headlines = headlines_to_list.headlines_list() 
-    answers = headlines_to_list.count_percentages() 
+    headlines = headlines_to_list.headlines_list()
+    answers = headlines_to_list.count_percentages()
     opinions = headlines_to_list.opinions_list()
     max_messages = count_max_messages_db.count_max()
     headline_ids = headlines_to_list.headline_ids_list()
-    headlines_answers_opinions = headlines_to_list.combination(headlines,answers,opinions,headline_ids)
-    return render_template("main_page.html",headlines=headlines,answers=answers,combo = headlines_answers_opinions, max_m = max_messages,results=search_results,queryy=query )
-    
+    headlines_answers_opinions = headlines_to_list.combination(
+        headlines, answers, opinions, headline_ids)
+    return render_template("main_page.html", headlines=headlines, answers=answers, combo=headlines_answers_opinions, max_m=max_messages, results=search_results, queryy=query)
+
+
 @app.route("/profile")
 def profile():
     username = session.get("username")
     started_deb_list = started_debates_to_list.started_debs(username)
     information = profile_information.profile_information(username)
 
-    combo_of_h_a_s_v= profile_information.statement_and_latest_answer(username)
+    combo_of_h_a_s_v = profile_information.statement_and_latest_answer(
+        username)
     return render_template(
         "profile.html",
         username=username,
         information=information,
         started_debates=started_deb_list,
         combo_of_h_a_s_v=combo_of_h_a_s_v
-        )
+    )
+
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
@@ -84,17 +94,19 @@ def register():
 
     username = request.form["username"]
     password = request.form["password"]
-    if users.register(username,password):
+    if users.register(username, password):
         return redirect("/")
     else:
         return render_template("error.html", message=(f"This username already exists: {username}"))
-    
-@app.route("/new_conversation", methods=["GET","POST"])
+
+
+@app.route("/new_conversation", methods=["GET", "POST"])
 def new_conversation():
     if request.method == "POST" and session["csrf_token"] != request.form.get("csrf_token"):
         return render_template("error.html", message=("L &#129313;"))
     username = session.get("username")
-    return render_template("new_conversation.html", username = username)
+    return render_template("new_conversation.html", username=username)
+
 
 @app.route("/send", methods=["POST"])
 def send():
@@ -105,13 +117,15 @@ def send():
     content = str(escape(request.form["content"])).replace("\r\n", "</br>")
     headline_text = request.form["headline"]
     headline_text = str(escape(headline_text)).replace("\r\n", "</br>")
-    statement_short = str(escape(request.form["statement"])).replace("\r\n", "</br>")
-    (headline_text,username,answer)
-    if messages.send(username,content,headline_text,answer,statement_short):
-        return redirect ("/headlines_list")
+    statement_short = str(
+        escape(request.form["statement"])).replace("\r\n", "</br>")
+    (headline_text, username, answer)
+    if messages.send(username, content, headline_text, answer, statement_short):
+        return redirect("/headlines_list")
     else:
         return render_template("error.html", message="Viestin lähetys ei onnistunut")
-    
+
+
 @app.route("/comment", methods=["POST"])
 def comment():
     if request.method == "POST" and session["csrf_token"] != request.form.get("csrf_token"):
@@ -122,40 +136,45 @@ def comment():
     headline = request.form["headline"]
     answer = request.form["answer"]
     is_not_ended = True
-    poll = messages.answers_to_db(headline_id,username,answer)
-    messages_list = match_headline.matching_comment(headline_id,username,content,answer)
+    poll = messages.answers_to_db(headline_id, username, answer)
+    messages_list = match_headline.matching_comment(
+        headline_id, username, content, answer)
     if messages_list:
         return render_template(
             "old_debate.html",
             headline=headline,
             messages_list=messages_list,
             poll=poll,
-            is_not_ended=is_not_ended,headline_id=headline_id
-            )
+            is_not_ended=is_not_ended, headline_id=headline_id
+        )
 
     else:
         return render_template("error.html", message="Viestin lähetys ei onnistunut")
 
-@app.route("/headlines_list", methods=["GET","POST"])
+
+@app.route("/headlines_list", methods=["GET", "POST"])
 def headlines_to_list_route():
-    headlines = headlines_to_list.headlines_list() 
+    headlines = headlines_to_list.headlines_list()
     headline_ids = headlines_to_list.headline_ids_list()
-    answers = headlines_to_list.count_percentages() 
+    answers = headlines_to_list.count_percentages()
     opinions = headlines_to_list.opinions_list()
     max_messages = count_max_messages_db.count_max()
-    headlines_answers_opinions = headlines_to_list.combination(headlines,answers,opinions,headline_ids)
-    return render_template("main_page.html",headlines=headlines,answers=answers,combo = headlines_answers_opinions, max_m = max_messages )
+    headlines_answers_opinions = headlines_to_list.combination(
+        headlines, answers, opinions, headline_ids)
+    return render_template("main_page.html", headlines=headlines, answers=answers, combo=headlines_answers_opinions, max_m=max_messages)
 
-@app.route("/old", methods=["GET","POST"])
-def fetch_old(): 
+
+@app.route("/old", methods=["GET", "POST"])
+def fetch_old():
     headline = request.args.get("h1")
     headline_id = request.args.get("id")
     is_it_ended = end_debatee.check_if_ended(headline_id)
     messages_list = match_headline.matching_content(headline_id)
     if messages_list:
-        return render_template("old_debate.html",headline=headline,messages_list=messages_list,is_not_ended=is_it_ended,headline_id=headline_id)
+        return render_template("old_debate.html", headline=headline, messages_list=messages_list, is_not_ended=is_it_ended, headline_id=headline_id)
     else:
         return render_template("error.html", message="Viestin lähetys ei onnistunut")
+
 
 @app.route("/logout")
 def logout():

@@ -4,9 +4,10 @@ from sqlalchemy.sql import text
 import secrets
 from werkzeug.security import check_password_hash, generate_password_hash
 
+
 def login(username, password):
     sql = text("SELECT id, password FROM users WHERE username=:username")
-    result = db.session.execute(sql, {"username":username})
+    result = db.session.execute(sql, {"username": username})
     user = result.fetchone()
     if not user:
         return False
@@ -18,7 +19,8 @@ def login(username, password):
             return True
         else:
             return False
-        
+
+
 def register(username, password):
     username = request.form["username"]
     password = request.form["password"]
@@ -31,12 +33,14 @@ def register(username, password):
         if i == username:
             return False
     try:
-        sql = text("INSERT INTO users (username,password) VALUES (:username,:password)")
-        db.session.execute(sql, {"username":username, "password":hash_value})
+        sql = text(
+            "INSERT INTO users (username,password) VALUES (:username,:password)")
+        db.session.execute(sql, {"username": username, "password": hash_value})
         db.session.commit()
     except:
         return False
     return login(username, password)
 
+
 def user_id():
-    return session.get("user_id",0)
+    return session.get("user_id", 0)
