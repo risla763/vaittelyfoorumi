@@ -68,6 +68,7 @@ def search():
     headlines_answers_opinions = headlines_to_list.combination(
         headlines, answers, opinions, headline_ids)
     return render_template("main_page.html", headlines=headlines, answers=answers, combo=headlines_answers_opinions, max_m=max_messages, results=search_results, queryy=query)
+    print("lol")
 
 
 @app.route("/profile")
